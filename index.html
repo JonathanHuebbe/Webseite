@@ -51,14 +51,12 @@
             width: 100%;
             max-width: 400px;
             height: auto;
-            max-height: 60vh; /* Limits height to 60% of viewport height */
             border-radius: 15px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
             transition: transform 0.3s ease;
             display: block;
             position: relative;
             z-index: 0;
-            object-fit: contain; /* Ensures image fits without distortion */
         }
         .button {
             position: absolute;
@@ -83,7 +81,7 @@
         .button:active { transform: scale(0.9); }
         #menu-button {
             position: relative;
-            margin: 1.5rem auto 0;
+            margin: 1.5rem auto 0; /* Increased margin-top to move the button down */
             width: clamp(180px, 20vw, 220px);
             height: clamp(50px, 6vw, 65px);
             background: linear-gradient(45deg, #e74c3c, #c0392b);
@@ -263,11 +261,8 @@
             }
         }
         @media only screen and (max-width: 768px) {
-            .container { padding: 1rem; } /* Reduced padding */
-            .background-image { 
-                max-width: 400px; 
-                max-height: 50vh; /* Adjusted for narrower screens */
-            }
+            .container { padding: 1rem; }
+            .background-image { max-width: 400px; }
             .menu { padding: 1rem; }
             .menu-header { min-height: 1.5rem; padding: 10px; }
             .menu-content { padding-top: 0.5rem; }
@@ -292,26 +287,14 @@
             #camera-menu .menu-content p { font-size: 0.7rem; }
             .menu-content { padding-top: 1.5rem; }
         }
-        @media only screen and (max-width: 768px) and (max-height: 1024px) {
-            .background-image {
-                max-width: 350px;
-                max-height: 45vh; /* Adjusted for vertically narrow screens */
-            }
-        }
         @media only screen and (max-width: 414px) {
-            .background-image { 
-                max-width: 350px; 
-                max-height: 40vh; /* Further reduced for small screens */
-            }
+            .background-image { max-width: 350px; }
         }
         @media (max-width: 320px) {
             .button { font-size: 0.7rem; }
         }
         @media only screen and (min-width: 768px) and (max-width: 1024px) {
-            .background-image { 
-                max-width: 350px; 
-                max-height: 50vh; 
-            }
+            .background-image { max-width: 350px; }
             .menu { max-width: 700px; max-height: 80vh; }
             #camera-menu .menu-content .section { width: 48%; }
             .close-button { top: 10px; right: 10px; }
@@ -320,10 +303,7 @@
             #arrow-controls { display: flex; bottom: 10px; }
         }
         @media (min-width: 1200px) {
-            .background-image { 
-                max-width: 600px; 
-                max-height: 70vh; /* Allow more height on larger screens */
-            }
+            .background-image { max-width: 600px; }
         }
         .background-image:hover { transform: scale(1.02); }
         #menu-button:hover {
