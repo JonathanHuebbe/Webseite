@@ -514,6 +514,39 @@
             .background-image { max-width: 600px; }
             .button { width: 165px; height: 165px; font-size: 1.65em; }
         }
+        /* Target iPhone and iPad devices for vertical centering */
+        @media only screen and (max-width: 1024px) and (-webkit-min-device-pixel-ratio: 1) {
+            body {
+                display: flex;
+                flex-direction: column; /* Stack items vertically */
+                justify-content: center; /* Center horizontally */
+                align-items: center; /* Center vertically */
+                min-height: 100vh; /* Ensure full viewport height */
+                overflow-y: auto; /* Allow scrolling if content overflows */
+            }
+            .container {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                height: auto; /* Allow container to adjust height */
+                padding: 1rem; /* Reduce padding for smaller screens */
+            }
+            .background-image {
+                position: relative; /* Remove absolute positioning if any */
+                top: auto; /* Reset any top positioning */
+                transform: none; /* Reset any transform */
+                margin: 0 auto; /* Center horizontally */
+            }
+            .button {
+                position: relative; /* Change from absolute to relative for better flow */
+                margin: 0.5rem; /* Add spacing between buttons */
+            }
+            #menu-button {
+                position: relative; /* Already relative, but reiterated for clarity */
+                margin-top: 1rem; /* Add spacing above menu button */
+            }
+        }
     </style>
 </head>
 <body>
