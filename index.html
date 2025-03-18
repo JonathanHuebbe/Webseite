@@ -32,7 +32,11 @@
             padding: 2rem;
             width: 100%;
             max-width: 1200px;
-            margin: 0 auto;
+            min-height: 100vh; /* Ensure container takes full height */
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* Center content vertically */
+            align-items: center; /* Center content horizontally */
             z-index: 1;
         }
         .title {
@@ -51,7 +55,8 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
             transition: transform 0.3s ease;
             display: block;
-            margin: 0 auto;
+            position: relative; /* Ensure it stays in flow */
+            z-index: 0; /* Below buttons */
         }
         .button {
             position: absolute;
@@ -69,7 +74,7 @@
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(0,0,0,0.2);
             font-weight: 500;
-            z-index: 2;
+            z-index: 2; /* Ensure buttons are above image */
         }
         .button:hover {
             transform: translateY(-5px);
@@ -77,17 +82,11 @@
             background: linear-gradient(45deg, #2980b9, #217dbb);
         }
         .button:active { transform: scale(0.9); }
-        @media (max-width: 480px) {
-            .button { width: 70px; height: 70px; font-size: 0.9rem; }
-        }
-        @media (max-width: 320px) {
-            .button { width: 50px; height: 50px; font-size: 0.7rem; }
-        }
-        #social-media { top: 5%; left: 5%; }
-        #globe { top: 25%; left: 10%; }
-        #camera { top: 40%; left: 25%; }
-        #script { top: 20%; right: 5%; }
-        #arcade { top: 5%; right: 5%; }
+        #social-media { top: 10%; left: 5%; }
+        #globe { top: 30%; left: 10%; }
+        #camera { top: 50%; left: 25%; }
+        #script { top: 30%; right: 5%; }
+        #arcade { top: 10%; right: 5%; }
         #menu-button {
             position: relative;
             margin: 1rem auto 0;
@@ -270,8 +269,23 @@
                 margin-top: 0;
             }
         }
-        @media (max-width: 480px) {
-            .button { width: 70px; height: 70px; font-size: 0.9rem; }
+        @media only screen and (max-width: 768px) { /* Targeting iPads and smaller */
+            .container {
+                padding: 1rem;
+            }
+            .background-image {
+                max-width: 350px; /* Slightly smaller for smaller screens */
+            }
+            .button {
+                width: 80px;
+                height: 80px;
+                font-size: 0.9rem;
+            }
+            #social-media { top: 5%; left: 2%; }
+            #globe { top: 25%; left: 5%; }
+            #camera { top: 45%; left: 15%; }
+            #script { top: 25%; right: 5%; }
+            #arcade { top: 5%; right: 2%; }
             .menu { padding: 1rem; }
             .menu-header { min-height: 1.5rem; padding: 10px; }
             .menu-content { padding-top: 0.5rem; }
@@ -296,12 +310,23 @@
             #camera-menu .menu-content p { font-size: 0.7rem; }
             .menu-content { padding-top: 1.5rem; }
         }
+        @media only screen and (max-width: 414px) { /* Targeting iPhones */
+            .background-image {
+                max-width: 300px; /* Fit iPhone screens better */
+            }
+            .button {
+                width: 60px;
+                height: 60px;
+                font-size: 0.8rem;
+            }
+            #social-media { top: 5%; left: 2%; }
+            #globe { top: 20%; left: 5%; }
+            #camera { top: 40%; left: 10%; }
+            #script { top: 20%; right: 5%; }
+            #arcade { top: 5%; right: 2%; }
+        }
         @media (max-width: 320px) {
             .button { width: 50px; height: 50px; font-size: 0.7rem; }
-        }
-        @media (max-width: 768px) {
-            #camera-menu .menu-header h2 { font-size: 1.5rem; }
-            #camera-menu .menu-content p { font-size: 0.9rem; }
         }
         @media only screen and (min-width: 768px) and (max-width: 1024px) {
             .background-image { max-width: 350px; }
@@ -513,39 +538,6 @@
         @media (min-width: 1200px) {
             .background-image { max-width: 600px; }
             .button { width: 165px; height: 165px; font-size: 1.65em; }
-        }
-        /* Target iPhone and iPad devices for vertical centering */
-        @media only screen and (max-width: 1024px) and (-webkit-min-device-pixel-ratio: 1) {
-            body {
-                display: flex;
-                flex-direction: column; /* Stack items vertically */
-                justify-content: center; /* Center horizontally */
-                align-items: center; /* Center vertically */
-                min-height: 100vh; /* Ensure full viewport height */
-                overflow-y: auto; /* Allow scrolling if content overflows */
-            }
-            .container {
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                height: auto; /* Allow container to adjust height */
-                padding: 1rem; /* Reduce padding for smaller screens */
-            }
-            .background-image {
-                position: relative; /* Remove absolute positioning if any */
-                top: auto; /* Reset any top positioning */
-                transform: none; /* Reset any transform */
-                margin: 0 auto; /* Center horizontally */
-            }
-            .button {
-                position: relative; /* Change from absolute to relative for better flow */
-                margin: 0.5rem; /* Add spacing between buttons */
-            }
-            #menu-button {
-                position: relative; /* Already relative, but reiterated for clarity */
-                margin-top: 1rem; /* Add spacing above menu button */
-            }
         }
     </style>
 </head>
