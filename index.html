@@ -3,6 +3,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Website Name</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
     <style>
         * { box-sizing: border-box; }
         body {
@@ -141,7 +142,7 @@
         #arcade-menu { z-index: 2; }
         .menu.open { opacity: 1; transform: translate(-50%, -50%) scale(1); }
         #contact-menu { min-height: 400px; }
-        #camera-menu { background: #607D8B; padding: 2rem; }
+        #camera-menu { background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%); padding: 2rem; }
         .menu-header {
             position: relative;
             margin-bottom: 1.5rem;
@@ -164,6 +165,10 @@
             transition: transform 0.2s ease;
             z-index: 11;
         }
+        #camera-menu .close-button {
+            top: -20px;
+            right: -15px;
+        }
         .menu-content {
             display: flex;
             flex-direction: column;
@@ -171,6 +176,7 @@
             align-items: center;
             min-height: 200px;
             padding-top: 1rem;
+            text-align: center;
         }
         .menu-content h2 {
             color: white;
@@ -199,9 +205,9 @@
             background: #ecf0f1;
             color: #2c3e50;
             font-size: clamp(0.9rem, 1.5vw, 1rem);
-            overflow: auto; /* Ensure text remains clear */
-            resize: vertical; /* Allow vertical resizing */
-            line-height: 1.5; /* Set line height to prevent blurriness */
+            overflow: auto;
+            resize: vertical;
+            line-height: 1.5;
         }
         .menu-content textarea { height: clamp(80px, 15vh, 100px); }
         .menu-content button[type="submit"] {
@@ -243,6 +249,7 @@
             #camera-menu .menu-content {
                 flex-direction: row;
                 justify-content: space-around;
+                align-items: flex-start;
             }
             .menu-content .section { width: 45%; }
             .vertical-line {
@@ -250,6 +257,9 @@
                 border-left: 1px solid #FFFFFF;
                 height: 80%;
                 margin: 0 1rem;
+            }
+            #camera-menu .menu-content .section.right .section-img {
+                margin-top: 0;
             }
         }
         @media (max-width: 480px) {
@@ -270,6 +280,13 @@
                 margin-bottom: 0;
             }
             .section p { margin: 0; font-size: 0.9rem; }
+            .menu-content button {
+                margin: 0.25rem 0;
+                margin-top: 0.8rem;
+            }
+            #camera-menu .menu-header h2 { font-size: 1.2rem; }
+            #camera-menu .menu-content p { font-size: 0.7rem; }
+            .menu-content { padding-top: 1.5rem; }
         }
         @media (max-width: 320px) {
             .button { width: 50px; height: 50px; font-size: 0.7rem; }
@@ -278,9 +295,22 @@
             #camera-menu .menu-header h2 { font-size: 1.5rem; }
             #camera-menu .menu-content p { font-size: 0.9rem; }
         }
-        @media (max-width: 480px) {
-            #camera-menu .menu-header h2 { font-size: 1.2rem; }
-            #camera-menu .menu-content p { font-size: 0.7rem; }
+        /* iPad-specific adjustments (768px–1024px) */
+        @media only screen and (min-width: 768px) and (max-width: 1024px) {
+            .menu {
+                max-width: 700px; /* Wider for iPad comfort */
+            }
+            #camera-menu .menu-content .section {
+                width: 48%; /* More breathing room */
+            }
+            .close-button {
+                top: 10px; /* Ensure tappable and visible */
+                right: 10px;
+            }
+            .button {
+                min-width: 120px; /* Slightly larger for touch */
+                min-height: 120px;
+            }
         }
         .background-image:hover { transform: scale(1.02); }
         #menu-button:hover {
@@ -340,11 +370,144 @@
         .bubble--3 { width: 10px; height: 10px; left: 30%; animation-delay: 5s; animation-duration: 20s; opacity: 0.3; }
         .bubble--4 { width: 25px; height: 25px; left: 40%; animation-delay: 8s; animation-duration: 17s; opacity: 0.2; }
         .bubble--5 { width: 30px; height: 30px; left: 60%; animation-delay: 10s; animation-duration: 15s; opacity: 0.1; }
-        .bubble--6 { width: 10px; height: 10px; left: 80%; animation-delay: 3s; animation-duration: 30s; opacity: 0.4; }
+        .bubble--6 { width: 10px; height: 10px; left: 80
+
+%; animation-delay: 3s; animation-duration: 30s; opacity: 0.4; }
         .bubble--7 { width: 15px; height: 15px; left: 90%; animation-delay: -7s; animation-duration: 25s; opacity: 0.3; }
         .bubble--9 { width: 20px; height: 20px; left: 50%; bottom: 30px; animation-delay: -5s; animation-duration: 19s; opacity: 0.2; }
         .bubble--10 { width: 40px; height: 40px; left: 30%; bottom: 30px; animation-delay: -21s; animation-duration: 16s; opacity: 0.3; }
         .bubble--11 { width: 25px; height: 25px; left: 90%; bottom: 30px; animation-delay: -10.5s; animation-duration: 19s; opacity: 0.3; }
+        .instagram-button {
+            width: 70px;
+            height: 70px;
+            border-radius: 15px;
+            border: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: transform 0.5s ease, box-shadow 0.2s ease;
+            position: relative;
+            overflow: hidden;
+            margin: 0 auto;
+        }
+        .instagram-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+        }
+        .instagram-button:active {
+            transform: scale(0.95);
+            box-shadow: 0 0 7px rgba(0, 0, 0, 0.2);
+        }
+        .instagram-icon {
+            width: 40px;
+            height: 40px;
+            transition: transform 0.15s ease;
+            z-index: 1;
+        }
+        .instagram-button:hover .instagram-icon {
+            transform: rotate(360deg);
+        }
+        .animated-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(135deg, #fdf497, #fd5949, #d6249f, #285AEB, #fdf497);
+            background-size: 400% 400%;
+            animation: wave 5s infinite alternate ease-in-out;
+        }
+        @keyframes wave {
+            0% { background-position: 0% 0%; }
+            25% { background-position: 100% 50%; }
+            50% { background-position: 50% 100%; }
+            75% { background-position: 0% 50%; }
+            100% { background-position: 100% 0%; }
+        }
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin: 20px auto;
+            overflow: hidden;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            background: white;
+        }
+        .carousel-track {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        .carousel-slide {
+            min-width: 100%;
+            text-align: center;
+            position: relative;
+        }
+        .carousel-slide h2 {
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 10px;
+            font-size: 24px;
+            margin-bottom: 10px;
+            position: relative;
+            font-family: 'Georgia', serif;
+        }
+        .slide-counter {
+            display: block;
+            background: rgba(255, 255, 255, 0.8);
+            color: black;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 14px;
+            font-family: 'Courier New', monospace;
+            margin: 0 auto 10px;
+            width: fit-content;
+        }
+        .carousel-slide img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            padding: 16px;
+            margin-top: -22px;
+            color: #333;
+            font-weight: bold;
+            font-size: 24px;
+            background: rgba(255,255,255,0.7);
+            border-radius: 3px;
+            transition: background 0.3s;
+        }
+        .prev { left: 10px; }
+        .next { right: 10px; }
+        .prev:hover, .next:hover { background: rgba(255,255,255,0.9); }
+        .dots-container {
+            text-align: center;
+            margin-top: 15px;
+        }
+        .dot {
+            cursor: pointer;
+            height: 15px;
+            width: 15px;
+            margin: 0 3px;
+            background: #bbb;
+            display: inline-block;
+            border-radius: 50%;
+            transition: background 0.3s;
+        }
+        .active, .dot:hover { background: #717171; }
+        @media (max-width: 480px) {
+            .carousel-container { width: 100%; }
+            .carousel-slide h2 { font-size: 18px; }
+            .slide-counter { font-size: 12px; }
+            .prev, .next { font-size: 18px; padding: 10px; }
+            .dot { height: 12px; width: 12px; }
+        }
     </style>
 </head>
 <body>
@@ -369,19 +532,36 @@
             <div class="menu-content">
                 <button onclick="closeMenu('menu-overlay')">Explore</button>
                 <button onclick="openMenu('contact-menu')">Contact me</button>
-                <button>Support me</button>
+                <button onclick="openSupportMenu()">Support me</button>
+                <button onclick="openMenu('privacy-menu')">Privacy</button>
             </div>
         </div>
         <div class="menu" id="social-media-menu">
             <div class="close-button" onclick="closeMenu('social-media-menu')">X</div>
             <div class="menu-content">
-                <h2>Social Media</h2>
+                <h2>Instagram</h2>
+                <button class="instagram-button" aria-label="Instagram" onclick="window.open('https://www.instagram.com/ti47881/', '_blank')">
+                    <div class="animated-background"></div>
+                    <svg class="instagram-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2.2c3.2 0 3.6 0 4.8.1 1.2.1 1.9.3 2.4.5.6.2 1.1.5 1.6 1s.8 1 1 1.6c.2.5.4 1.2.5 2.4.1 1.2.1 1.6.1 4.8s0 3.6-.1 4.8c-.1 1.2-.3 1.9-.5 2.4-.2.6-.5 1.1-1 1.6s-1 .8-1.6 1c-.5.2-1.2.4-2.4.5-1.2.1-1.6.1-4.8.1s-3.6 0-4.8-.1c-1.2-.1-1.9-.3-2.4-.5-.6-.2-1.1-.5-1.6-1s-.8-1-1-1.6c-.2-.5-.4-1.2-.5-2.4-.1-1.2-.1-1.6-.1-4.8s0-3.6.1-4.8c.1-1.2.3-1.9.5-2.4.2-.6.5-1.1 1-1.6s1-.8 1.6-1c.5-.2 1.2-.4 2.4-.5 1.2-.1 1.6-.1 4.8-.1z" fill="none" stroke="white" stroke-width="2"/>
+                        <circle cx="12" cy="12" r="3.5" fill="none" stroke="white" stroke-width="2"/>
+                        <circle cx="17.5" cy="6.5" r="1" fill="white"/>
+                    </svg> 
+                </button>
+                <a style="color: white; display: block; margin-top: 10px;">(Click to visit my Instagram Profile)</a>
             </div>
         </div>
         <div class="menu" id="globe-menu">
             <div class="close-button" onclick="closeMenu('globe-menu')">X</div>
             <div class="menu-content">
-                <h2>Globe</h2>
+                <h2>Countries visited</h2>
+                <span class="slide-counter" id="slideCounter">1/26</span>
+                <div class="carousel-container">
+                    <div class="carousel-track"></div>
+                    <a class="prev" onclick="moveSlide(-1)">❮</a>
+                    <a class="next" onclick="moveSlide(1)">❯</a>
+                </div>
+                <div class="dots-container" id="dotsContainer"></div>
             </div>
         </div>
         <div class="menu" id="camera-menu">
@@ -415,7 +595,7 @@
                 <div id="game-selection" style="text-align: center;">
                     <img src="images/RetroSnake.png" alt="Arcade Image" class="arcade-image" style="max-width: 70%; height: auto; margin-bottom: 1rem;">
                     <button onclick="loadGame('snake')">Snake</button>
-                    <p style="color: #2980b9; font-size: 1rem; margin-top: 0.5rem;">Control (with Keys on Screen or with WASD on PC)</p>
+                    <p style="color: #ffffff; font-size: 1rem; margin-top: 0.5rem;">(Use on Screen Arrows or WASD on Keyboard to control the snake)</p>
                 </div>
                 <div id="game-area" style="display:none;"></div>
             </div>
@@ -431,6 +611,28 @@
                     <button type="submit">Send Message</button>
                 </form>
                 <div id="message-status">Message sent</div>
+            </div>
+        </div>
+        <div class="menu" id="privacy-menu">
+            <div class="close-button" onclick="closeMenu('privacy-menu')">X</div>
+            <div class="menu-content">
+                <h2>Privacy Policy</h2>
+                <p style="color: rgb(215, 215, 215);">
+                    This website does not track visitors or use cookies. However, messages sent via the "Contact Me" form are processed and stored by Google Forms. See 
+                    <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" style="color: rgb(255, 255, 255);">
+                      Google's Privacy Policy
+                    </a> 
+                    for more details.
+                  </p>
+            </div>
+        </div>
+        <div class="menu" id="support-menu">
+            <div class="close-button" onclick="closeMenu('support-menu')">X</div>
+            <div class="menu-content">
+                <h2>Support Me</h2>
+                <p style="color: white;">Thank you for your support!</p>
+                <button onclick="window.open('https://buymeacoffee.com/jonathanhuebbe', '_blank')">Donate</button>
+                <p style="color: white;">(opens in new tab)</p>
             </div>
         </div>
         <a href="#" class="button" id="social-media" onclick="openMenu('social-media-menu'); return false;">Social Media</a>
@@ -578,20 +780,19 @@
         function closeMenu(menuId) {
             const menu = document.getElementById(menuId);
             menu.classList.remove('open');
-            setTimeout(() => {
-                menu.style.display = 'none';
-                const greyButtons = document.querySelectorAll('.button');
-                greyButtons.forEach(button => {
-                    button.style.display = 'flex';
-                });
-                document.getElementById('menu-button').style.display = 'block';
-                document.querySelector('.background-image').style.visibility = 'visible';
-                document.querySelector('.title').style.visibility = 'visible';
-                document.querySelector('.ocean').style.display = 'none';
-                document.body.style.background = 'linear-gradient(135deg, #c44314 0%, #c3cfe2 100%)';
-                document.getElementById('grid-canvas').style.display = 'none';
-                stopGridAnimation();
-            }, 300); // Adjust timing to match the camera menu
+            menu.style.display = 'none';
+            const greyButtons = document.querySelectorAll('.button');
+            greyButtons.forEach(button => {
+                button.style.display = 'flex';
+            });
+            document.getElementById('menu-button').style.display = 'block';
+            document.querySelector('.background-image').style.visibility = 'visible';
+            document.querySelector('.title').style.visibility = 'visible';
+            document.querySelector('.ocean').style.display = 'none';
+            document.body.style.background = 'linear-gradient(135deg, #c44314 0%, #c3cfe2 100%)';
+            document.getElementById('grid-canvas').style.display = 'none';
+            stopGridAnimation();
+
             if (menuId === 'arcade-menu') {
                 if (snakeGameInterval) {
                     clearInterval(snakeGameInterval);
@@ -602,10 +803,32 @@
                 document.getElementById('game-area').style.display = 'none';
                 document.getElementById('game-selection').style.display = 'block';
                 document.getElementById('arrow-controls').style.display = 'none';
-                setTimeout(() => {
-                    document.getElementById('menu-button').style.display = 'block'; // Show menu button with delay
-                }, 300); // Adjust timing to match the camera menu
+                document.getElementById('menu-button').style.display = 'block';
             }
+        }
+
+        function openSupportMenu() {
+            const menuOverlay = document.getElementById('menu-overlay');
+            const supportMenu = document.getElementById('support-menu');
+            
+            menuOverlay.classList.remove('open');
+            menuOverlay.style.display = 'none';
+            
+            supportMenu.style.display = 'block';
+            setTimeout(() => {
+                supportMenu.classList.add('open');
+            }, 10);
+
+            const greyButtons = document.querySelectorAll('.button');
+            greyButtons.forEach(button => {
+                button.style.display = 'none';
+            });
+            document.getElementById('menu-button').style.display = 'none';
+            document.querySelector('.background-image').style.visibility = 'hidden';
+            document.querySelector('.title').style.visibility = 'hidden';
+            document.querySelector('.ocean').style.display = 'none';
+            document.body.style.background = 'linear-gradient(135deg, #c44314 0%, #c3cfe2 100%)';
+            document.getElementById('grid-canvas').style.display = 'none';
         }
 
         function loadGame(game) {
@@ -731,15 +954,66 @@
                 alert('Error sending message: ' + error);
             }
         });
-
         document.getElementById('download-btn').addEventListener('click', function() {
             const link = document.createElement('a');
-            link.href = 'download/Gemini_Generated_Image_ympapcympapcympa.jpg';
+            link.href = 'https://drive.google.com/file/d/12uOESku8Emx9uWVLBSUnH9jEDd-oinI6/view?usp=sharing';
             link.target = '_blank';
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
         });
+
+        const track = document.querySelector('.carousel-track');
+        let slidesHtml = '';
+        const slideTexts = [
+            "Welcome to Slide 1", "Exploring Slide 2", "Discover Slide 3", "Amazing Slide 4", "Creative Slide 5",
+            "Exciting Slide 6", "Innovative Slide 7", "Inspiring Slide 8", "Fascinating Slide 9", "Engaging Slide 10",
+            "Dynamic Slide 11", "Interactive Slide 12", "Captivating Slide 13", "Motivational Slide 14", "Enthralling Slide 15",
+            "Eye-catching Slide 16", "Spectacular Slide 17", "Vibrant Slide 18", "Dazzling Slide 19", "Stunning Slide 20",
+            "Finale - Slide 21", "New Adventure Slide 22", "Thrilling Slide 23", "Bold Slide 24", "Epic Slide 25"
+        ];
+
+        for (let i = 1; i <= slideTexts.length; i++) {
+            slidesHtml += `
+                <div class="carousel-slide">
+                    <h2>${slideTexts[i - 1]}</h2>
+                    <img src="images/image${i}.png" alt="Slide ${i}">
+                </div>`;
+        }
+        track.innerHTML = slidesHtml;
+
+        let currentIndex = 0;
+        const slides = document.getElementsByClassName('carousel-slide');
+        const dotsContainer = document.getElementById('dotsContainer');
+        const slideCounter = document.getElementById('slideCounter');
+
+        for (let i = 1; i <= slideTexts.length; i++) {
+            let dot = document.createElement('span');
+            dot.classList.add('dot');
+            dot.setAttribute('onclick', `goToSlide(${i - 1})`);
+            dotsContainer.appendChild(dot);
+        }
+
+        const dots = document.getElementsByClassName('dot');
+
+        function moveSlide(n) {
+            currentIndex = (currentIndex + n + slides.length) % slides.length;
+            updateCarousel();
+        }
+
+        function goToSlide(index) {
+            currentIndex = index;
+            updateCarousel();
+        }
+
+        function updateCarousel() {
+            track.style.transform = `translateX(-${currentIndex * 100}%)`;
+            for (let dot of dots) dot.classList.remove('active');
+            dots[currentIndex].classList.add('active');
+            slideCounter.textContent = `${currentIndex + 1}/25`;
+        }
+
+        updateCarousel();
     </script>
 </body>
 </html>
