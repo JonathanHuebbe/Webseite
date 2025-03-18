@@ -49,7 +49,7 @@
         }
         .background-image {
             width: 100%;
-            max-width: 400px;
+            max-width: 400px; /* Default for smaller screens */
             height: auto;
             border-radius: 15px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
@@ -81,7 +81,7 @@
         .button:active { transform: scale(0.9); }
         #menu-button {
             position: relative;
-            margin: 1.5rem auto 0; /* Increased margin-top to move the button down */
+            margin: 1rem auto 0;
             width: clamp(180px, 20vw, 220px);
             height: clamp(50px, 6vw, 65px);
             background: linear-gradient(45deg, #e74c3c, #c0392b);
@@ -94,6 +94,32 @@
             font-size: clamp(1.2rem, 2.5vw, 1.6rem);
             line-height: clamp(50px, 6vw, 65px);
             z-index: 2;
+        }
+        /* Updated media queries for responsive image scaling */
+        @media only screen and (max-width: 768px) {
+            .container { padding: 1rem; }
+            .background-image { 
+                max-width: 350px; /* Portrait iPad */
+                width: 90vw; /* Scale with viewport */
+            }
+        }
+        @media only screen and (max-width: 414px) {
+            .background-image { 
+                max-width: 300px; /* iPhone */
+                width: 90vw;
+            }
+        }
+        @media only screen and (min-width: 769px) and (max-width: 1024px) and (orientation: landscape) {
+            .background-image { 
+                max-width: 500px; /* Larger in iPad landscape */
+                width: 70vw; /* Scale with viewport width */
+            }
+        }
+        @media (min-width: 1200px) {
+            .background-image { 
+                max-width: 600px; 
+                width: 50vw; /* Larger screens */
+            }
         }
         #arrow-controls {
             display: none;
@@ -262,7 +288,6 @@
         }
         @media only screen and (max-width: 768px) {
             .container { padding: 1rem; }
-            .background-image { max-width: 400px; }
             .menu { padding: 1rem; }
             .menu-header { min-height: 1.5rem; padding: 10px; }
             .menu-content { padding-top: 0.5rem; }
@@ -288,22 +313,18 @@
             .menu-content { padding-top: 1.5rem; }
         }
         @media only screen and (max-width: 414px) {
-            .background-image { max-width: 350px; }
+            /* Covered by earlier query */
         }
         @media (max-width: 320px) {
             .button { font-size: 0.7rem; }
         }
         @media only screen and (min-width: 768px) and (max-width: 1024px) {
-            .background-image { max-width: 350px; }
             .menu { max-width: 700px; max-height: 80vh; }
             #camera-menu .menu-content .section { width: 48%; }
             .close-button { top: 10px; right: 10px; }
             #globe-menu .carousel-container { max-height: 400px; overflow: hidden; }
             #globe-menu .carousel-slide img { max-height: 300px; object-fit: cover; }
             #arrow-controls { display: flex; bottom: 10px; }
-        }
-        @media (min-width: 1200px) {
-            .background-image { max-width: 600px; }
         }
         .background-image:hover { transform: scale(1.02); }
         #menu-button:hover {
@@ -1010,7 +1031,7 @@
 
         updateCarousel();
 
-        // Button scaling and positioning
+        // Button scaling and positioning with debounce
         function adjustButtons() {
             const bgImage = document.querySelector('.background-image');
             const buttons = document.querySelectorAll('.button');
@@ -1018,8 +1039,8 @@
             const imageHeight = bgImage.offsetHeight;
             const container = document.querySelector('.container');
 
-            // Calculate button size as 20% of image width, capped at 100px
-            const buttonSize = Math.min(imageWidth * 0.2, 100);
+            // Calculate button size as 25% of image width, capped at 120px
+            const buttonSize = Math.min(imageWidth * 0.25, 120);
             const fontSize = buttonSize * 0.2;
 
             buttons.forEach(button => {
@@ -1058,8 +1079,27 @@
             });
         }
 
+        // Debounce function to limit resize event frequency
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+
+        const debouncedAdjustButtons = debounce(adjustButtons, 100);
+
+        // Add event listeners for load, resize, and orientation change
         window.addEventListener('load', adjustButtons);
-        window.addEventListener('resize', adjustButtons);
+        window.addEventListener('resize', debouncedAdjustButtons);
+        window.addEventListener('orientationchange', () => {
+            setTimeout(adjustButtons, 100); // Ensure layout updates after orientation change
+        });
     </script>
 </body>
 </html>
