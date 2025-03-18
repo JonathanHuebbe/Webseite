@@ -14,7 +14,7 @@
             align-items: center;
             min-height: 100vh;
             background: linear-gradient(135deg, #c44314 0%, #c3cfe2 100%);
-            overflow: hidden; /* Prevents background scrolling */
+            overflow: hidden;
         }
         #grid-canvas {
             position: fixed;
@@ -32,11 +32,7 @@
             padding: 2rem;
             width: 100%;
             max-width: 1200px;
-            min-height: 100vh; /* Ensure container takes full height */
-            display: flex;
-            flex-direction: column;
-            justify-content: center; /* Center content vertically */
-            align-items: center; /* Center content horizontally */
+            margin: 0 auto;
             z-index: 1;
         }
         .title {
@@ -49,14 +45,11 @@
         }
         .background-image {
             width: 100%;
-            max-width: 400px;
+            max-width: 600px;
             height: auto;
             border-radius: 15px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
             transition: transform 0.3s ease;
-            display: block;
-            position: relative; /* Ensure it stays in flow */
-            z-index: 0; /* Below buttons */
         }
         .button {
             position: absolute;
@@ -74,7 +67,6 @@
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(0,0,0,0.2);
             font-weight: 500;
-            z-index: 2; /* Ensure buttons are above image */
         }
         .button:hover {
             transform: translateY(-5px);
@@ -82,14 +74,20 @@
             background: linear-gradient(45deg, #2980b9, #217dbb);
         }
         .button:active { transform: scale(0.9); }
-        #social-media { top: 10%; left: 5%; }
-        #globe { top: 30%; left: 10%; }
+        @media (max-width: 480px) {
+            .button { width: 70px; height: 70px; font-size: 0.9rem; }
+        }
+        @media (max-width: 320px) {
+            .button { width: 50px; height: 50px; font-size: 0.7rem; }
+        }
+        #social-media { top: 5%; left: 5%; }
+        #globe { top: 35%; left: 10%; }
         #camera { top: 50%; left: 25%; }
-        #script { top: 30%; right: 5%; }
-        #arcade { top: 10%; right: 5%; }
+        #script { top: 20%; right: 5%; }
+        #arcade { top: 5%; right: 5%; }
         #menu-button {
             position: relative;
-            margin: 1rem auto 0;
+            margin: 3rem auto 0;
             width: clamp(180px, 20vw, 220px);
             height: clamp(50px, 6vw, 65px);
             background: linear-gradient(45deg, #e74c3c, #c0392b);
@@ -102,24 +100,19 @@
             font-size: clamp(1.2rem, 2.5vw, 1.6rem);
             display: block;
             line-height: clamp(50px, 6vw, 65px);
-            z-index: 2;
         }
         #arrow-controls {
             display: none;
-            position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
+            margin: 5rem auto 0;
             width: clamp(180px, 20vw, 220px);
             height: clamp(50px, 6vw, 65px);
             justify-content: space-around;
             align-items: center;
-            z-index: 11;
         }
         #arrow-controls button {
-            width: clamp(40px, 5vw, 50px);
-            height: clamp(40px, 5vw, 50px);
-            font-size: clamp(1rem, 2vw, 1.5rem);
+            width: clamp(30px, 4vw, 40px);
+            height: clamp(30px, 4vw, 40px);
+            font-size: clamp(0.8rem, 2vw, 1.25rem);
             background: linear-gradient(45deg, #3498db, #2980b9);
             color: white;
             border: none;
@@ -141,7 +134,7 @@
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
             padding: 2rem;
-            max-height: 85vh;
+            max-height: 90vh;
             overflow-y: auto;
             opacity: 0;
             transition: opacity 0.3s ease, transform 0.3s ease;
@@ -269,74 +262,72 @@
                 margin-top: 0;
             }
         }
-        @media only screen and (max-width: 768px) { /* Targeting iPads and smaller */
-            .container {
-                padding: 1rem;
-            }
-            .background-image {
-                max-width: 350px; /* Slightly smaller for smaller screens */
-            }
+        @media (max-width: 480px) {
+    .button { width: 70px; height: 70px; font-size: 0.9rem; }
+    .menu { padding: 1rem; }
+    .menu-header { min-height: 1.5rem; padding: 10px; }
+    .menu-content { padding-top: 0.5rem; }
+    .section {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin: 0.5rem 0;
+    }
+    .section-img {
+        width: 100px;
+        height: auto;
+        margin-right: 10px;
+        margin-bottom: 0;
+    }
+    .section p { margin: 0; font-size: 0.9rem; }
+    .menu-content button {
+        margin: 0.25rem 0; /* Reduced from 0.5rem to make buttons closer */
+        margin-top: 0.8rem; /* Keeps the downward shift */
+    }
+    #camera-menu .menu-header h2 { font-size: 1.2rem; }
+    #camera-menu .menu-content p { font-size: 0.7rem; }
+    .menu-content { padding-top: 1.5rem; }
+}
+        @media (max-width: 320px) {
+            .button { width: 50px; height: 50px; font-size: 0.7rem; }
+        }
+        @media (max-width: 768px) {
+            #camera-menu .menu-header h2 { font-size: 1.5rem; }
+            #camera-menu .menu-content p { font-size: 0.9rem; }
+        }
+        @media (min-width: 1024px) {
             .button {
-                width: 80px;
-                height: 80px;
-                font-size: 0.9rem;
+                width: 90px;
+                height: 90px;
+                font-size: 1rem;
             }
-            #social-media { top: 5%; left: 2%; }
-            #globe { top: 25%; left: 5%; }
-            #camera { top: 45%; left: 15%; }
-            #script { top: 25%; right: 5%; }
-            #arcade { top: 5%; right: 2%; }
-            .menu { padding: 1rem; }
-            .menu-header { min-height: 1.5rem; padding: 10px; }
-            .menu-content { padding-top: 0.5rem; }
+        }
+
+        @media (max-width: 1024px) {
+            .button { width: 90px; height: 90px; font-size: 1rem; }
+            .menu { padding: 1.5rem; }
+            .menu-header { min-height: 1.75rem; padding: 12px; }
+            .menu-content { padding-top: 0.75rem; }
             .section {
                 display: flex;
                 flex-direction: row;
                 align-items: center;
-                margin: 0.5rem 0;
+                margin: 0.75rem 0;
             }
             .section-img {
-                width: 100px;
+                width: 120px;
                 height: auto;
-                margin-right: 10px;
+                margin-right: 12px;
                 margin-bottom: 0;
             }
-            .section p { margin: 0; font-size: 0.9rem; }
+            .section p { margin: 0; font-size: 1rem; }
             .menu-content button {
-                margin: 0.25rem 0;
-                margin-top: 0.8rem;
+                margin: 0.35rem 0; /* Adjusted for better spacing */
+                margin-top: 1rem; /* Keeps the downward shift */
             }
-            #camera-menu .menu-header h2 { font-size: 1.2rem; }
-            #camera-menu .menu-content p { font-size: 0.7rem; }
-            .menu-content { padding-top: 1.5rem; }
-        }
-        @media only screen and (max-width: 414px) { /* Targeting iPhones */
-            .background-image {
-                max-width: 300px; /* Fit iPhone screens better */
-            }
-            .button {
-                width: 60px;
-                height: 60px;
-                font-size: 0.8rem;
-            }
-            #social-media { top: 5%; left: 2%; }
-            #globe { top: 20%; left: 5%; }
-            #camera { top: 40%; left: 10%; }
-            #script { top: 20%; right: 5%; }
-            #arcade { top: 5%; right: 2%; }
-        }
-        @media (max-width: 320px) {
-            .button { width: 50px; height: 50px; font-size: 0.7rem; }
-        }
-        @media only screen and (min-width: 768px) and (max-width: 1024px) {
-            .background-image { max-width: 350px; }
-            .menu { max-width: 700px; max-height: 80vh; }
-            #camera-menu .menu-content .section { width: 48%; }
-            .close-button { top: 10px; right: 10px; }
-            .button { min-width: 120px; min-height: 120px; }
-            #globe-menu .carousel-container { max-height: 400px; overflow: hidden; }
-            #globe-menu .carousel-slide img { max-height: 300px; object-fit: cover; }
-            #arrow-controls { display: flex; bottom: 10px; }
+            #camera-menu .menu-header h2 { font-size: 1.4rem; }
+            #camera-menu .menu-content p { font-size: 0.85rem; }
+            .menu-content { padding-top: 1.75rem; }
         }
         .background-image:hover { transform: scale(1.02); }
         #menu-button:hover {
@@ -453,8 +444,8 @@
         .carousel-container {
             position: relative;
             width: 100%;
-            max-width: 400px;
-            margin: 15px auto;
+            max-width: 600px;
+            margin: 20px auto;
             overflow: hidden;
             border: 2px solid #ccc;
             border-radius: 8px;
@@ -472,9 +463,9 @@
         .carousel-slide h2 {
             background: rgba(0, 0, 0, 0.7);
             color: white;
-            padding: 8px;
-            font-size: 20px;
-            margin-bottom: 8px;
+            padding: 10px;
+            font-size: 24px;
+            margin-bottom: 10px;
             position: relative;
             font-family: 'Georgia', serif;
         }
@@ -482,45 +473,43 @@
             display: block;
             background: rgba(255, 255, 255, 0.8);
             color: black;
-            padding: 4px 8px;
+            padding: 5px 10px;
             border-radius: 5px;
-            font-size: 12px;
+            font-size: 14px;
             font-family: 'Courier New', monospace;
-            margin: 0 auto 8px;
+            margin: 0 auto 10px;
             width: fit-content;
         }
         .carousel-slide img {
             width: 100%;
-            max-height: 250px;
             height: auto;
             display: block;
-            object-fit: cover;
         }
         .prev, .next {
             cursor: pointer;
             position: absolute;
             top: 50%;
-            padding: 12px;
-            margin-top: -18px;
+            padding: 16px;
+            margin-top: -22px;
             color: #333;
             font-weight: bold;
-            font-size: 20px;
-            background: rgba(255, 255, 255, 0.7);
+            font-size: 24px;
+            background: rgba(255,255,255,0.7);
             border-radius: 3px;
             transition: background 0.3s;
         }
-        .prev { left: 8px; }
-        .next { right: 8px; }
-        .prev:hover, .next:hover { background: rgba(255, 255, 255, 0.9); }
+        .prev { left: 10px; }
+        .next { right: 10px; }
+        .prev:hover, .next:hover { background: rgba(255,255,255,0.9); }
         .dots-container {
             text-align: center;
-            margin-top: 10px;
+            margin-top: 15px;
         }
         .dot {
             cursor: pointer;
-            height: 12px;
-            width: 12px;
-            margin: 0 2px;
+            height: 15px;
+            width: 15px;
+            margin: 0 3px;
             background: #bbb;
             display: inline-block;
             border-radius: 50%;
@@ -528,16 +517,11 @@
         }
         .active, .dot:hover { background: #717171; }
         @media (max-width: 480px) {
-            .carousel-container { width: 100%; max-width: 300px; }
-            .carousel-slide h2 { font-size: 16px; }
-            .slide-counter { font-size: 10px; }
-            .carousel-slide img { max-height: 200px; }
-            .prev, .next { font-size: 16px; padding: 8px; }
-            .dot { height: 10px; width: 10px; }
-        }
-        @media (min-width: 1200px) {
-            .background-image { max-width: 600px; }
-            .button { width: 165px; height: 165px; font-size: 1.65em; }
+            .carousel-container { width: 100%; }
+            .carousel-slide h2 { font-size: 18px; }
+            .slide-counter { font-size: 12px; }
+            .prev, .next { font-size: 18px; padding: 10px; }
+            .dot { height: 12px; width: 12px; }
         }
     </style>
 </head>
@@ -865,7 +849,6 @@
         function loadGame(game) {
             document.getElementById('game-selection').style.display = 'none';
             document.getElementById('game-area').style.display = 'block';
-            document.getElementById('arrow-controls').style.display = 'flex';
             if (game === 'snake') { loadSnakeGame(); }
         }
 
