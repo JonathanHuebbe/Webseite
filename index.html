@@ -14,7 +14,7 @@
             align-items: center;
             min-height: 100vh;
             background: linear-gradient(135deg, #c44314 0%, #c3cfe2 100%);
-            overflow: hidden;
+            overflow: auto; /* Changed from hidden to allow scrolling if needed */
         }
         #grid-canvas {
             position: fixed;
@@ -45,11 +45,13 @@
         }
         .background-image {
             width: 100%;
-            max-width: 600px;
+            max-width: 400px; /* Reduced from 600px to fit better on iPad */
             height: auto;
             border-radius: 15px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
             transition: transform 0.3s ease;
+            display: block;
+            margin: 0 auto;
         }
         .button {
             position: absolute;
@@ -67,6 +69,7 @@
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(0,0,0,0.2);
             font-weight: 500;
+            z-index: 2; /* Ensure buttons are above the image */
         }
         .button:hover {
             transform: translateY(-5px);
@@ -81,13 +84,13 @@
             .button { width: 50px; height: 50px; font-size: 0.7rem; }
         }
         #social-media { top: 5%; left: 5%; }
-        #globe { top: 35%; left: 10%; }
-        #camera { top: 50%; left: 25%; }
+        #globe { top: 25%; left: 10%; } /* Adjusted from 35% to avoid overlap */
+        #camera { top: 40%; left: 25%; } /* Adjusted from 50% */
         #script { top: 20%; right: 5%; }
         #arcade { top: 5%; right: 5%; }
         #menu-button {
             position: relative;
-            margin: 3rem auto 0;
+            margin: 1rem auto 0; /* Reduced from 3rem to bring it closer */
             width: clamp(180px, 20vw, 220px);
             height: clamp(50px, 6vw, 65px);
             background: linear-gradient(45deg, #e74c3c, #c0392b);
@@ -100,19 +103,24 @@
             font-size: clamp(1.2rem, 2.5vw, 1.6rem);
             display: block;
             line-height: clamp(50px, 6vw, 65px);
+            z-index: 2;
         }
         #arrow-controls {
             display: none;
-            margin: 5rem auto 0;
+            position: fixed;
+            bottom: 20px; /* Positioned at bottom for visibility */
+            left: 50%;
+            transform: translateX(-50%);
             width: clamp(180px, 20vw, 220px);
             height: clamp(50px, 6vw, 65px);
             justify-content: space-around;
             align-items: center;
+            z-index: 11; /* Above other elements */
         }
         #arrow-controls button {
-            width: clamp(30px, 4vw, 40px);
-            height: clamp(30px, 4vw, 40px);
-            font-size: clamp(0.8rem, 2vw, 1.25rem);
+            width: clamp(40px, 5vw, 50px); /* Increased for touch */
+            height: clamp(40px, 5vw, 50px);
+            font-size: clamp(1rem, 2vw, 1.5rem);
             background: linear-gradient(45deg, #3498db, #2980b9);
             color: white;
             border: none;
@@ -134,7 +142,7 @@
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
             padding: 2rem;
-            max-height: 90vh;
+            max-height: 85vh; /* Reduced from 90vh to fit better */
             overflow-y: auto;
             opacity: 0;
             transition: opacity 0.3s ease, transform 0.3s ease;
@@ -297,8 +305,12 @@
         }
         /* iPad-specific adjustments (768px–1024px) */
         @media only screen and (min-width: 768px) and (max-width: 1024px) {
+            .background-image {
+                max-width: 350px; /* Further reduced for iPad */
+            }
             .menu {
                 max-width: 700px; /* Wider for iPad comfort */
+                max-height: 80vh; /* Ensure globe menu fits */
             }
             #camera-menu .menu-content .section {
                 width: 48%; /* More breathing room */
@@ -310,6 +322,18 @@
             .button {
                 min-width: 120px; /* Slightly larger for touch */
                 min-height: 120px;
+            }
+            #globe-menu .carousel-container {
+                max-height: 400px; /* Limit height to fit menu */
+                overflow: hidden;
+            }
+            #globe-menu .carousel-slide img {
+                max-height: 300px; /* Restrict image height */
+                object-fit: cover;
+            }
+            #arrow-controls {
+                display: flex; /* Force visibility on iPad */
+                bottom: 10px; /* Closer to bottom edge */
             }
         }
         .background-image:hover { transform: scale(1.02); }
@@ -370,9 +394,7 @@
         .bubble--3 { width: 10px; height: 10px; left: 30%; animation-delay: 5s; animation-duration: 20s; opacity: 0.3; }
         .bubble--4 { width: 25px; height: 25px; left: 40%; animation-delay: 8s; animation-duration: 17s; opacity: 0.2; }
         .bubble--5 { width: 30px; height: 30px; left: 60%; animation-delay: 10s; animation-duration: 15s; opacity: 0.1; }
-        .bubble--6 { width: 10px; height: 10px; left: 80
-
-%; animation-delay: 3s; animation-duration: 30s; opacity: 0.4; }
+        .bubble--6 { width: 10px; height: 10px; left: 80%; animation-delay: 3s; animation-duration: 30s; opacity: 0.4; }
         .bubble--7 { width: 15px; height: 15px; left: 90%; animation-delay: -7s; animation-duration: 25s; opacity: 0.3; }
         .bubble--9 { width: 20px; height: 20px; left: 50%; bottom: 30px; animation-delay: -5s; animation-duration: 19s; opacity: 0.2; }
         .bubble--10 { width: 40px; height: 40px; left: 30%; bottom: 30px; animation-delay: -21s; animation-duration: 16s; opacity: 0.3; }
@@ -834,6 +856,7 @@
         function loadGame(game) {
             document.getElementById('game-selection').style.display = 'none';
             document.getElementById('game-area').style.display = 'block';
+            document.getElementById('arrow-controls').style.display = 'flex'; // Ensure controls are visible
             if (game === 'snake') { loadSnakeGame(); }
         }
 
