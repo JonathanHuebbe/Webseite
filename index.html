@@ -49,7 +49,7 @@
         }
         .background-image {
             width: 100%;
-            max-width: 400px; /* Default for smaller screens */
+            max-width: 400px;
             height: auto;
             border-radius: 15px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
@@ -95,30 +95,29 @@
             line-height: clamp(50px, 6vw, 65px);
             z-index: 2;
         }
-        /* Updated media queries for responsive image scaling */
         @media only screen and (max-width: 768px) {
             .container { padding: 1rem; }
             .background-image { 
-                max-width: 350px; /* Portrait iPad */
-                width: 90vw; /* Scale with viewport */
+                max-width: 350px;
+                width: 90vw;
             }
         }
         @media only screen and (max-width: 414px) {
             .background-image { 
-                max-width: 340px; /* Increased for iPhone portrait (was 300px) */
+                max-width: 340px;
                 width: 90vw;
             }
         }
         @media only screen and (min-width: 769px) and (max-width: 1024px) and (orientation: landscape) {
             .background-image { 
-                max-width: 500px; /* Larger in iPad landscape */
-                width: 70vw; /* Scale with viewport width */
+                max-width: 500px;
+                width: 70vw;
             }
         }
         @media (min-width: 1200px) {
             .background-image { 
-                max-width: 600px; 
-                width: 50vw; /* Larger screens */
+                max-width: 600px;
+                width: 50vw;
             }
         }
         #arrow-controls {
@@ -163,8 +162,8 @@
             opacity: 0;
             transition: opacity 0.3s ease, transform 0.3s ease;
         }
-        #arcade-menu { z-index: 2; }
         .menu.open { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+        #arcade-menu { z-index: 2; }
         #contact-menu { min-height: 400px; }
         #camera-menu { background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%); padding: 2rem; }
         .menu-header {
@@ -322,9 +321,6 @@
             .menu { max-width: 700px; max-height: 80vh; }
             #camera-menu .menu-content .section { width: 48%; }
             .close-button { top: 10px; right: 10px; }
-            #globe-menu .carousel-container { max-height: 400px; overflow: hidden; }
-            #globe-menu .carousel-slide img { max-height: 300px; object-fit: cover; }
-            #arrow-controls { display: flex; bottom: 10px; }
         }
         .background-image:hover { transform: scale(1.02); }
         #menu-button:hover {
@@ -438,15 +434,55 @@
             75% { background-position: 0% 50%; }
             100% { background-position: 100% 0%; }
         }
+        /* Enhanced Globe Menu Styling with Original Scaling */
+        #globe-menu {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.95);
+            width: 90%;
+            max-width: 600px;
+            min-height: 320px;
+            background: linear-gradient(135deg, rgba(44, 62, 80, 0.9), rgba(52, 73, 94, 0.7));
+            backdrop-filter: blur(8px);
+            display: none;
+            z-index: 10;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3), 0 0 10px rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            max-height: 85vh;
+            overflow-y: auto;
+            opacity: 0;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+        #globe-menu.open {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+        }
+        #globe-menu .menu-header {
+            margin-bottom: 1.5rem;
+            min-height: 2rem;
+            padding: 15px;
+        }
+        #globe-menu h2 {
+            color: #fff;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            letter-spacing: 1px;
+            margin: 0;
+        }
         .carousel-container {
             position: relative;
             width: 100%;
             max-width: 400px;
             margin: 15px auto;
             overflow: hidden;
-            border: 2px solid #ccc;
-            border-radius: 8px;
-            background: white;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
         .carousel-track {
             display: flex;
@@ -456,50 +492,61 @@
             min-width: 100%;
             text-align: center;
             position: relative;
+            padding: 10px;
         }
         .carousel-slide h2 {
             background: rgba(0, 0, 0, 0.7);
-            color: white;
+            color: #fff;
             padding: 8px;
-            font-size: 20px;
+            font-size: clamp(1rem, 2.5vw, 1.5rem);
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
             margin-bottom: 8px;
-            position: relative;
-            font-family: 'Georgia', serif;
-        }
-        .slide-counter {
-            display: block;
-            background: rgba(255, 255, 255, 0.8);
-            color: black;
-            padding: 4px 8px;
-            border-radius: 5px;
-            font-size: 12px;
-            font-family: 'Courier New', monospace;
-            margin: 0 auto 8px;
-            width: fit-content;
+            border-radius: 8px;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
         }
         .carousel-slide img {
             width: 100%;
             max-height: 250px;
             height: auto;
-            display: block;
             object-fit: cover;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+        .carousel-slide img:hover {
+            transform: scale(1.03);
         }
         .prev, .next {
             cursor: pointer;
             position: absolute;
             top: 50%;
-            padding: 12px;
-            margin-top: -18px;
-            color: #333;
+            padding: 12px 16px;
+            margin-top: -20px;
+            color: #fff;
             font-weight: bold;
             font-size: 20px;
-            background: rgba(255, 255, 255, 0.7);
-            border-radius: 3px;
-            transition: background 0.3s;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+        .prev:hover, .next:hover {
+            background: rgba(0, 0, 0, 0.8);
+            transform: scale(1.1);
         }
         .prev { left: 8px; }
         .next { right: 8px; }
-        .prev:hover, .next:hover { background: rgba(255, 255, 255, 0.9); }
+        .slide-counter {
+            display: block;
+            background: rgba(255, 255, 255, 0.9);
+            color: #2c3e50;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: clamp(0.8rem, 1.5vw, 1rem);
+            font-family: 'Poppins', sans-serif;
+            margin: 10px auto;
+            width: fit-content;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
         .dots-container {
             text-align: center;
             margin-top: 10px;
@@ -508,20 +555,89 @@
             cursor: pointer;
             height: 12px;
             width: 12px;
-            margin: 0 2px;
-            background: #bbb;
+            margin: 0 4px;
+            background: rgba(255, 255, 255, 0.4);
             display: inline-block;
             border-radius: 50%;
-            transition: background 0.3s;
+            transition: all 0.3s ease;
         }
-        .active, .dot:hover { background: #717171; }
-        @media (max-width: 480px) {
-            .carousel-container { width: 100%; max-width: 300px; }
-            .carousel-slide h2 { font-size: 16px; }
-            .slide-counter { font-size: 10px; }
-            .carousel-slide img { max-height: 200px; }
-            .prev, .next { font-size: 16px; padding: 8px; }
-            .dot { height: 10px; width: 10px; }
+        .dot:hover, .dot.active {
+            background: #fff;
+            transform: scale(1.2);
+            box-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+        }
+        /* Responsive Scaling for Globe Menu Matching Original */
+        @media only screen and (max-width: 768px) {
+            #globe-menu {
+                padding: 1rem;
+                width: 90%;
+                max-width: 600px; /* Matches original */
+            }
+            #globe-menu .menu-header {
+                min-height: 1.5rem;
+                padding: 10px;
+            }
+            #globe-menu .menu-content {
+                padding-top: 0.5rem;
+            }
+            .carousel-container {
+                max-width: 350px; /* Adjusted for smaller screens */
+                width: 90%;
+            }
+            .carousel-slide h2 {
+                font-size: clamp(0.9rem, 2vw, 1.2rem);
+            }
+            .carousel-slide img {
+                max-height: 200px;
+            }
+            .prev, .next {
+                font-size: 18px;
+                padding: 8px 12px;
+            }
+            .dot {
+                height: 10px;
+                width: 10px;
+            }
+        }
+        @media only screen and (max-width: 414px) {
+            #globe-menu {
+                max-width: 340px; /* Matches background-image scaling */
+                width: 90vw;
+            }
+            .carousel-container {
+                max-width: 300px;
+                width: 90%;
+            }
+        }
+        @media only screen and (min-width: 768px) and (max-width: 1024px) {
+            #globe-menu {
+                max-width: 700px; /* Matches original */
+                max-height: 80vh;
+            }
+            .carousel-container {
+                max-width: 500px;
+                width: 70vw; /* Matches background-image scaling */
+            }
+            .carousel-slide img {
+                max-height: 300px;
+            }
+            .prev, .next {
+                font-size: 20px;
+            }
+            .dot {
+                height: 12px;
+                width: 12px;
+            }
+        }
+        @media (min-width: 1200px) {
+            #globe-menu {
+                max-width: 600px; /* Matches original default */
+                width: 50vw; /* Optional: aligns with background-image */
+            }
+            .carousel-container {
+                max-width: 600px;
+                width: 50vw;
+            }
         }
     </style>
 </head>
@@ -569,8 +685,8 @@
         <div class="menu" id="globe-menu">
             <div class="close-button" onclick="closeMenu('globe-menu')">X</div>
             <div class="menu-content">
-                <h2>Countries visited</h2>
-                <span class="slide-counter" id="slideCounter">1/26</span>
+                <h2>Countries Visited</h2>
+                <span class="slide-counter" id="slideCounter">1/25</span>
                 <div class="carousel-container">
                     <div class="carousel-track"></div>
                     <a class="prev" onclick="moveSlide(-1)">❮</a>
@@ -1031,7 +1147,6 @@
 
         updateCarousel();
 
-        // Button scaling and positioning with debounce
         function adjustButtons() {
             const bgImage = document.querySelector('.background-image');
             const buttons = document.querySelectorAll('.button');
@@ -1039,7 +1154,6 @@
             const imageHeight = bgImage.offsetHeight;
             const container = document.querySelector('.container');
 
-            // Calculate button size as 25% of image width, capped at 120px
             const buttonSize = Math.min(imageWidth * 0.2, 100);
             const fontSize = buttonSize * 0.2;
 
@@ -1049,13 +1163,11 @@
                 button.style.fontSize = `${fontSize}px`;
             });
 
-            // Get the image's position relative to the container
             const imageRect = bgImage.getBoundingClientRect();
             const containerRect = container.getBoundingClientRect();
             const imageLeft = imageRect.left - containerRect.left;
             const imageTop = imageRect.top - containerRect.top;
 
-            // Position buttons relative to the image
             const positions = {
                 'social-media': { left: 0.05, top: 0.1 },
                 'globe': { left: 0.1, top: 0.3 },
@@ -1079,7 +1191,6 @@
             });
         }
 
-        // Debounce function to limit resize event frequency
         function debounce(func, wait) {
             let timeout;
             return function executedFunction(...args) {
@@ -1094,11 +1205,10 @@
 
         const debouncedAdjustButtons = debounce(adjustButtons, 100);
 
-        // Add event listeners for load, resize, and orientation change
         window.addEventListener('load', adjustButtons);
         window.addEventListener('resize', debouncedAdjustButtons);
         window.addEventListener('orientationchange', () => {
-            setTimeout(adjustButtons, 100); // Ensure layout updates after orientation change
+            setTimeout(adjustButtons, 100);
         });
     </script>
 </body>
