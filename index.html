@@ -45,7 +45,7 @@
         }
         .background-image {
             width: 100%;
-            max-width: 400px; /* Reduced from 600px to fit better on iPad */
+            max-width: 400px; /* Default size */
             height: auto;
             border-radius: 15px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
@@ -529,6 +529,17 @@
             .slide-counter { font-size: 12px; }
             .prev, .next { font-size: 18px; padding: 10px; }
             .dot { height: 12px; width: 12px; }
+        }
+        /* Adjustment for big screens */
+        @media (min-width: 1200px) {
+            .background-image {
+                max-width: 600px;
+            }
+            .button {
+                width: 165px;
+                height: 165px;
+                font-size: 1.65em;
+            }
         }
     </style>
 </head>
