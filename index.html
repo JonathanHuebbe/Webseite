@@ -14,7 +14,7 @@
             align-items: center;
             min-height: 100vh;
             background: linear-gradient(135deg, #c44314 0%, #c3cfe2 100%);
-            overflow: auto; /* Changed from hidden to allow scrolling if needed */
+            overflow: auto;
         }
         #grid-canvas {
             position: fixed;
@@ -45,7 +45,7 @@
         }
         .background-image {
             width: 100%;
-            max-width: 400px; /* Default size */
+            max-width: 400px;
             height: auto;
             border-radius: 15px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
@@ -69,7 +69,7 @@
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(0,0,0,0.2);
             font-weight: 500;
-            z-index: 2; /* Ensure buttons are above the image */
+            z-index: 2;
         }
         .button:hover {
             transform: translateY(-5px);
@@ -84,13 +84,13 @@
             .button { width: 50px; height: 50px; font-size: 0.7rem; }
         }
         #social-media { top: 5%; left: 5%; }
-        #globe { top: 25%; left: 10%; } /* Adjusted from 35% to avoid overlap */
-        #camera { top: 40%; left: 25%; } /* Adjusted from 50% */
+        #globe { top: 25%; left: 10%; }
+        #camera { top: 40%; left: 25%; }
         #script { top: 20%; right: 5%; }
         #arcade { top: 5%; right: 5%; }
         #menu-button {
             position: relative;
-            margin: 1rem auto 0; /* Reduced from 3rem to bring it closer */
+            margin: 1rem auto 0;
             width: clamp(180px, 20vw, 220px);
             height: clamp(50px, 6vw, 65px);
             background: linear-gradient(45deg, #e74c3c, #c0392b);
@@ -108,17 +108,17 @@
         #arrow-controls {
             display: none;
             position: fixed;
-            bottom: 20px; /* Positioned at bottom for visibility */
+            bottom: 20px;
             left: 50%;
             transform: translateX(-50%);
             width: clamp(180px, 20vw, 220px);
             height: clamp(50px, 6vw, 65px);
             justify-content: space-around;
             align-items: center;
-            z-index: 11; /* Above other elements */
+            z-index: 11;
         }
         #arrow-controls button {
-            width: clamp(40px, 5vw, 50px); /* Increased for touch */
+            width: clamp(40px, 5vw, 50px);
             height: clamp(40px, 5vw, 50px);
             font-size: clamp(1rem, 2vw, 1.5rem);
             background: linear-gradient(45deg, #3498db, #2980b9);
@@ -142,7 +142,7 @@
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
             padding: 2rem;
-            max-height: 85vh; /* Reduced from 90vh to fit better */
+            max-height: 85vh;
             overflow-y: auto;
             opacity: 0;
             transition: opacity 0.3s ease, transform 0.3s ease;
@@ -303,38 +303,15 @@
             #camera-menu .menu-header h2 { font-size: 1.5rem; }
             #camera-menu .menu-content p { font-size: 0.9rem; }
         }
-        /* iPad-specific adjustments (768px–1024px) */
         @media only screen and (min-width: 768px) and (max-width: 1024px) {
-            .background-image {
-                max-width: 350px; /* Further reduced for iPad */
-            }
-            .menu {
-                max-width: 700px; /* Wider for iPad comfort */
-                max-height: 80vh; /* Ensure globe menu fits */
-            }
-            #camera-menu .menu-content .section {
-                width: 48%; /* More breathing room */
-            }
-            .close-button {
-                top: 10px; /* Ensure tappable and visible */
-                right: 10px;
-            }
-            .button {
-                min-width: 120px; /* Slightly larger for touch */
-                min-height: 120px;
-            }
-            #globe-menu .carousel-container {
-                max-height: 400px; /* Limit height to fit menu */
-                overflow: hidden;
-            }
-            #globe-menu .carousel-slide img {
-                max-height: 300px; /* Restrict image height */
-                object-fit: cover;
-            }
-            #arrow-controls {
-                display: flex; /* Force visibility on iPad */
-                bottom: 10px; /* Closer to bottom edge */
-            }
+            .background-image { max-width: 350px; }
+            .menu { max-width: 700px; max-height: 80vh; }
+            #camera-menu .menu-content .section { width: 48%; }
+            .close-button { top: 10px; right: 10px; }
+            .button { min-width: 120px; min-height: 120px; }
+            #globe-menu .carousel-container { max-height: 400px; overflow: hidden; }
+            #globe-menu .carousel-slide img { max-height: 300px; object-fit: cover; }
+            #arrow-controls { display: flex; bottom: 10px; }
         }
         .background-image:hover { transform: scale(1.02); }
         #menu-button:hover {
@@ -451,8 +428,8 @@
         .carousel-container {
             position: relative;
             width: 100%;
-            max-width: 600px;
-            margin: 20px auto;
+            max-width: 400px;
+            margin: 15px auto;
             overflow: hidden;
             border: 2px solid #ccc;
             border-radius: 8px;
@@ -470,9 +447,9 @@
         .carousel-slide h2 {
             background: rgba(0, 0, 0, 0.7);
             color: white;
-            padding: 10px;
-            font-size: 24px;
-            margin-bottom: 10px;
+            padding: 8px;
+            font-size: 20px;
+            margin-bottom: 8px;
             position: relative;
             font-family: 'Georgia', serif;
         }
@@ -480,43 +457,45 @@
             display: block;
             background: rgba(255, 255, 255, 0.8);
             color: black;
-            padding: 5px 10px;
+            padding: 4px 8px;
             border-radius: 5px;
-            font-size: 14px;
+            font-size: 12px;
             font-family: 'Courier New', monospace;
-            margin: 0 auto 10px;
+            margin: 0 auto 8px;
             width: fit-content;
         }
         .carousel-slide img {
             width: 100%;
+            max-height: 250px;
             height: auto;
             display: block;
+            object-fit: cover;
         }
         .prev, .next {
             cursor: pointer;
             position: absolute;
             top: 50%;
-            padding: 16px;
-            margin-top: -22px;
+            padding: 12px;
+            margin-top: -18px;
             color: #333;
             font-weight: bold;
-            font-size: 24px;
-            background: rgba(255,255,255,0.7);
+            font-size: 20px;
+            background: rgba(255, 255, 255, 0.7);
             border-radius: 3px;
             transition: background 0.3s;
         }
-        .prev { left: 10px; }
-        .next { right: 10px; }
-        .prev:hover, .next:hover { background: rgba(255,255,255,0.9); }
+        .prev { left: 8px; }
+        .next { right: 8px; }
+        .prev:hover, .next:hover { background: rgba(255, 255, 255, 0.9); }
         .dots-container {
             text-align: center;
-            margin-top: 15px;
+            margin-top: 10px;
         }
         .dot {
             cursor: pointer;
-            height: 15px;
-            width: 15px;
-            margin: 0 3px;
+            height: 12px;
+            width: 12px;
+            margin: 0 2px;
             background: #bbb;
             display: inline-block;
             border-radius: 50%;
@@ -524,22 +503,16 @@
         }
         .active, .dot:hover { background: #717171; }
         @media (max-width: 480px) {
-            .carousel-container { width: 100%; }
-            .carousel-slide h2 { font-size: 18px; }
-            .slide-counter { font-size: 12px; }
-            .prev, .next { font-size: 18px; padding: 10px; }
-            .dot { height: 12px; width: 12px; }
+            .carousel-container { width: 100%; max-width: 300px; }
+            .carousel-slide h2 { font-size: 16px; }
+            .slide-counter { font-size: 10px; }
+            .carousel-slide img { max-height: 200px; }
+            .prev, .next { font-size: 16px; padding: 8px; }
+            .dot { height: 10px; width: 10px; }
         }
-        /* Adjustment for big screens */
         @media (min-width: 1200px) {
-            .background-image {
-                max-width: 600px;
-            }
-            .button {
-                width: 165px;
-                height: 165px;
-                font-size: 1.65em;
-            }
+            .background-image { max-width: 600px; }
+            .button { width: 165px; height: 165px; font-size: 1.65em; }
         }
     </style>
 </head>
@@ -867,7 +840,7 @@
         function loadGame(game) {
             document.getElementById('game-selection').style.display = 'none';
             document.getElementById('game-area').style.display = 'block';
-            document.getElementById('arrow-controls').style.display = 'flex'; // Ensure controls are visible
+            document.getElementById('arrow-controls').style.display = 'flex';
             if (game === 'snake') { loadSnakeGame(); }
         }
 
