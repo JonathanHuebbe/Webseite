@@ -105,7 +105,7 @@
         }
         @media only screen and (max-width: 414px) {
             .background-image { 
-                max-width: 300px; /* iPhone */
+                max-width: 340px; /* Increased for iPhone portrait (was 300px) */
                 width: 90vw;
             }
         }
@@ -1040,7 +1040,7 @@
             const container = document.querySelector('.container');
 
             // Calculate button size as 25% of image width, capped at 120px
-            const buttonSize = Math.min(imageWidth * 0.25, 120);
+            const buttonSize = Math.min(imageWidth * 0.2, 100);
             const fontSize = buttonSize * 0.2;
 
             buttons.forEach(button => {
