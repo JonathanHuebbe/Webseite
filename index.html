@@ -166,7 +166,114 @@
         .menu.open { opacity: 1; transform: translate(-50%, -50%) scale(1); }
         #arcade-menu { z-index: 2; }
         #contact-menu { min-height: 400px; }
-        #camera-menu { background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%); padding: 2rem; }
+        
+        /* Enhanced Camera Menu Styling */
+        #camera-menu {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.95);
+            width: 90%;
+            max-width: 600px;
+            min-height: 320px;
+            background: linear-gradient(135deg, rgba(44, 62, 80, 0.9), rgba(52, 73, 94, 0.7));
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            display: none;
+            z-index: 10;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3), 0 0 15px rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            max-height: 85vh;
+            overflow-y: auto;
+            opacity: 0;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+        #camera-menu.open {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+        }
+        #camera-menu .menu-header {
+            position: relative;
+            margin-bottom: 2rem;
+            min-height: 2rem;
+            padding: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+        }
+        #camera-menu .menu-header h2 {
+            color: #fff;
+            margin: 0;
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            letter-spacing: 1.2px;
+            opacity: 0;
+            animation: fadeInDown 0.5s ease forwards;
+        }
+        #camera-menu .close-button {
+            top: 15px;
+            right: 15px;
+            color: #e74c3c;
+            font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+            cursor: pointer;
+            padding: 0.5rem;
+            transition: transform 0.2s ease, color 0.3s ease;
+        }
+        #camera-menu .close-button:hover {
+            transform: scale(1.2);
+            color: #ff6b6b;
+        }
+        #camera-menu .menu-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 200px;
+            padding-top: 1rem;
+            text-align: center;
+            animation: fadeInUp 0.5s ease forwards;
+        }
+        #camera-menu .menu-content .section {
+            width: 100%;
+            margin: 1rem 0;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        #camera-menu .menu-content .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+        #camera-menu .section-img {
+            width: 100%;
+            max-width: 300px;
+            height: auto;
+            border-radius: 12px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+            margin-bottom: 1rem;
+            transition: transform 0.3s ease;
+        }
+        #camera-menu .section-img:hover {
+            transform: scale(1.03);
+        }
+        #camera-menu .section p {
+            color: #e0e0e0;
+            margin-top: 0.75rem;
+            font-size: clamp(1rem, 1.5vw, 1.2rem);
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        #camera-menu .vertical-line {
+            display: none;
+            border-left: 1px solid rgba(255, 255, 255, 0.3);
+            height: 80%;
+            margin: 0 1.5rem;
+        }
+
         .menu-header {
             position: relative;
             margin-bottom: 1.5rem;
@@ -188,10 +295,6 @@
             padding: 0.5rem;
             transition: transform 0.2s ease;
             z-index: 11;
-        }
-        #camera-menu .close-button {
-            top: -20px;
-            right: -15px;
         }
         .menu-content {
             display: flex;
@@ -282,6 +385,9 @@
                 height: 80%;
                 margin: 0 1rem;
             }
+            #camera-menu .vertical-line {
+                display: block;
+            }
             #camera-menu .menu-content .section.right .section-img {
                 margin-top: 0;
             }
@@ -310,7 +416,7 @@
             }
             #camera-menu .menu-header h2 { font-size: 1.2rem; }
             #camera-menu .menu-content p { font-size: 0.7rem; }
-            .menu-content { padding-top: 1.5rem; }
+            #camera-menu .menu-content { padding-top: 1.5rem; }
         }
         @media only screen and (max-width: 414px) {
             /* Covered by earlier query */
@@ -375,6 +481,14 @@
         @keyframes sideWays {
             0% { margin-left: 0px; }
             100% { margin-left: 200px; }
+        }
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         .bubble--1 { left: 10%; animation-delay: 0.5s; animation-duration: 16s; opacity: 0.2; }
         .bubble--2 { width: 15px; height: 15px; left: 40%; animation-delay: 1s; animation-duration: 10s; opacity: 0.1; }
@@ -505,10 +619,6 @@
         }
         #social-media-menu .instagram-button:active::after {
             animation: ripple 0.6s linear;
-        }
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
         }
         @keyframes slideIn {
             from { opacity: 0; transform: translateY(15px); }
@@ -749,7 +859,6 @@
                 width: 12px;
             }
         }
-   
     </style>
 </head>
 <body>
