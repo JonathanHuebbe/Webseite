@@ -167,24 +167,24 @@
         #arcade-menu { z-index: 2; }
         #contact-menu { min-height: 400px; }
         
-        /* Enhanced Camera Menu Styling with Small Screen Fixes */
+        /* Updated Camera Menu Styling */
         #camera-menu {
             position: fixed;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%) scale(0.95);
             width: 90%;
-            max-width: 600px;
-            min-height: 320px;
+            max-width: 650px;
+            min-height: 340px;
             background: linear-gradient(135deg, rgba(44, 62, 80, 0.9), rgba(52, 73, 94, 0.7));
             backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.15);
             display: none;
             z-index: 10;
             border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3), 0 0 15px rgba(255, 255, 255, 0.1);
-            padding: 2rem;
-            max-height: 85vh;
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.3), 0 0 15px rgba(255, 255, 255, 0.1);
+            padding: clamp(1.5rem, 3vw, 2.5rem);
+            max-height: 90vh;
             overflow-y: auto;
             opacity: 0;
             transition: opacity 0.3s ease, transform 0.3s ease;
@@ -195,28 +195,25 @@
         }
         #camera-menu .menu-header {
             position: relative;
-            margin-bottom: 2rem;
-            min-height: 2rem;
-            padding: 15px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+            margin-bottom: clamp(1rem, 2vw, 1.5rem);
+            padding: clamp(10px, 2vw, 15px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
         }
         #camera-menu .menu-header h2 {
             color: #fff;
-            margin: 0;
-            font-size: clamp(1.2rem, 3vw, 1.8rem);
             font-family: 'Playfair Display', serif;
             font-weight: 700;
+            font-size: clamp(1.4rem, 3.5vw, 2rem);
             text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-            letter-spacing: 1.2px;
-            opacity: 0;
-            animation: fadeInDown 0.5s ease forwards;
+            letter-spacing: 1px;
+            margin: 0;
+            line-height: 1.2;
         }
         #camera-menu .close-button {
-            top: 15px;
-            right: 15px;
+            top: clamp(-25px, -2vw, -15px);
+            right: clamp(-20px, -2vw, -10px);
             color: #e74c3c;
-            font-size: clamp(1.2rem, 2.5vw, 1.8rem);
-            cursor: pointer;
+            font-size: clamp(1.4rem, 2.5vw, 1.8rem);
             padding: 0.5rem;
             transition: transform 0.2s ease, color 0.3s ease;
         }
@@ -226,109 +223,97 @@
         }
         #camera-menu .menu-content {
             display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            min-height: 200px;
-            padding-top: 1rem;
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: flex-start;
+            min-height: 220px;
+            padding-top: clamp(0.5rem, 1.5vw, 1rem);
+            gap: clamp(1rem, 2vw, 2rem);
+        }
+        #camera-menu .section {
+            width: 45%;
             text-align: center;
-            animation: fadeInUp 0.5s ease forwards;
+            transition: transform 0.3s ease;
         }
-        #camera-menu .menu-content .section {
-            width: 100%;
-            margin: 1rem 0;
-            padding: 1rem;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 10px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        #camera-menu .menu-content .section:hover {
+        #camera-menu .section:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
         }
         #camera-menu .section-img {
             width: 100%;
-            max-width: 300px; /* Default for larger screens */
+            max-width: clamp(200px, 25vw, 300px);
             height: auto;
             border-radius: 12px;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
-            margin-bottom: 1rem;
-            transition: transform 0.3s ease;
-            object-fit: cover; /* Ensures images scale nicely */
+            border: 2px solid rgba(255, 255, 255, 0.9);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+            margin-bottom: clamp(0.5rem, 1vw, 1rem);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         #camera-menu .section-img:hover {
-            transform: scale(1.03);
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
         }
         #camera-menu .section p {
-            color: #e0e0e0;
-            margin-top: 0.75rem;
-            font-size: clamp(0.9rem, 1.5vw, 1.2rem); /* Adjusted for smaller text on small screens */
+            color: #fff;
             font-family: 'Poppins', sans-serif;
+            font-size: clamp(0.9rem, 1.5vw, 1.1rem);
             line-height: 1.6;
-            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin: 0;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
         }
         #camera-menu .vertical-line {
-            display: none;
+            display: block;
             border-left: 1px solid rgba(255, 255, 255, 0.3);
             height: 80%;
-            margin: 0 1.5rem;
+            align-self: center;
+            margin: 0 clamp(0.5rem, 1vw, 1rem);
         }
-
-        /* Media Queries for Small iPhone Screens */
-        @media only screen and (max-width: 414px) {
+        @media only screen and (max-width: 768px) {
             #camera-menu {
-                padding: 1rem;
-                width: 95%; /* Slightly wider to fit content */
-                max-width: 340px;
-            }
-            #camera-menu .menu-header {
-                min-height: 1.5rem;
-                padding: 10px;
+                padding: 1.5rem;
+                max-width: 500px;
+                min-height: 400px;
             }
             #camera-menu .menu-content {
-                padding-top: 0.5rem;
+                flex-direction: column;
+                align-items: center;
+                gap: 1.5rem;
             }
             #camera-menu .section {
-                flex-direction: column; /* Stack image and text vertically */
-                align-items: center;
-                margin: 0.5rem 0;
-                padding: 0.75rem;
-            }
-            #camera-menu .section-img {
-                max-width: 150px; /* Reduced size for small screens */
-                border: 1px solid rgba(255, 255, 255, 0.3); /* Thinner border */
-                border-radius: 8px; /* Slightly smaller radius */
-                margin-bottom: 0.75rem;
-            }
-            #camera-menu .section p {
-                font-size: clamp(0.8rem, 1.5vw, 1rem); /* Smaller text */
-                margin: 0.5rem 0;
-            }
-        }
-
-        @media only screen and (max-width: 320px) {
-            #camera-menu .section-img {
-                max-width: 120px; /* Even smaller for tiny screens */
-                border: 1px solid rgba(255, 255, 255, 0.3);
-                border-radius: 6px;
-            }
-            #camera-menu .section p {
-                font-size: 0.75rem; /* Smallest readable size */
-            }
-        }
-
-        @media (min-width: 768px) {
-            #camera-menu .menu-content {
-                flex-direction: row;
-                justify-content: space-around;
-                align-items: flex-start;
-            }
-            #camera-menu .menu-content .section {
-                width: 45%;
+                width: 100%;
+                max-width: 350px;
             }
             #camera-menu .vertical-line {
-                display: block;
+                display: none;
+            }
+            #camera-menu .menu-header h2 {
+                font-size: clamp(1.2rem, 3vw, 1.6rem);
+            }
+            #camera-menu .section-img {
+                max-width: clamp(150px, 40vw, 250px);
+            }
+            #camera-menu .section p {
+                font-size: clamp(0.8rem, 1.5vw, 1rem);
+            }
+        }
+        @media only screen and (max-width: 414px) {
+            #camera-menu {
+                max-width: 340px;
+                padding: 1rem;
+            }
+            #camera-menu .section-img {
+                max-width: clamp(120px, 35vw, 200px);
+            }
+        }
+        @media only screen and (min-width: 769px) and (max-width: 1024px) {
+            #camera-menu {
+                max-width: 700px;
+                max-height: 80vh;
+            }
+            #camera-menu .section {
+                width: 48%;
+            }
+            #camera-menu .section-img {
+                max-width: clamp(220px, 20vw, 280px);
             }
         }
 
@@ -461,9 +446,10 @@
                 margin: 0.25rem 0;
                 margin-top: 0.8rem;
             }
+            .menu-content { padding-top: 1.5rem; }
         }
         @media only screen and (max-width: 414px) {
-            /* Covered by camera-menu specific query above */
+            /* Covered by earlier query */
         }
         @media (max-width: 320px) {
             .button { font-size: 0.7rem; }
@@ -524,14 +510,6 @@
         @keyframes sideWays {
             0% { margin-left: 0px; }
             100% { margin-left: 200px; }
-        }
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-15px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
         }
         .bubble--1 { left: 10%; animation-delay: 0.5s; animation-duration: 16s; opacity: 0.2; }
         .bubble--2 { width: 15px; height: 15px; left: 40%; animation-delay: 1s; animation-duration: 10s; opacity: 0.1; }
@@ -663,6 +641,10 @@
         #social-media-menu .instagram-button:active::after {
             animation: ripple 0.6s linear;
         }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
         @keyframes slideIn {
             from { opacity: 0; transform: translateY(15px); }
             to { opacity: 1; transform: translateY(0); }
@@ -713,9 +695,9 @@
             position: fixed;
             top: 50%;
             left: 50%;
-            transform: translate(-50%, -50%) scale(0.95);
-            width: 90%;
-            max-width: 600px;
+            transform: translate(-50%, -50%) scale(0.98);
+            width: 92%;
+            max-width: 620px;
             min-height: 320px;
             background: linear-gradient(135deg, rgba(44, 62, 80, 0.9), rgba(52, 73, 94, 0.7));
             backdrop-filter: blur(8px);
@@ -752,8 +734,6 @@
             width: 100%;
             max-width: 400px;
             margin: 15px auto;
-            padding: 1rem;
-            box-sizing: border-box;
             overflow: hidden;
             border-radius: 15px;
             background: rgba(255, 255, 255, 0.1);
@@ -769,7 +749,6 @@
             text-align: center;
             position: relative;
             padding: 10px;
-            box-sizing: border-box;
         }
         .carousel-slide h2 {
             background: rgba(0, 0, 0, 0.7);
@@ -789,8 +768,6 @@
             object-fit: cover;
             border-radius: 10px;
             transition: transform 0.3s ease;
-            margin: 0 auto;
-            display: block;
         }
         .carousel-slide img:hover {
             transform: scale(1.03);
@@ -822,19 +799,22 @@
             border-radius: 20px;
             font-size: clamp(0.8rem, 1.5vw, 1rem);
             font-family: 'Poppins', sans-serif;
-            margin: 10px auto;
+            margin: 5px auto;
             width: fit-content;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
         }
         .dots-container {
             text-align: center;
-            margin-top: 10px;
+            margin-top: 0px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
         }
         .dot {
             cursor: pointer;
             height: 12px;
             width: 12px;
-            margin: 0 4px;
+            margin: 2px;
             background: rgba(255, 255, 255, 0.4);
             display: inline-block;
             border-radius: 50%;
@@ -885,6 +865,10 @@
             .carousel-container {
                 max-width: 300px;
                 width: 90%;
+            }
+            .dot {
+                height: 8px;
+                width: 8px;
             }
         }
         @media only screen and (min-width: 768px) and (max-width: 1024px) {
