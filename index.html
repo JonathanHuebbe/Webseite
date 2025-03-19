@@ -1019,8 +1019,8 @@
             </div>
         </div>
         <a href="#" class="button" id="social-media" onclick="openMenu('social-media-menu'); return false;">Social Media</a>
-        <a href="#" class="button" id="globe" onclick="openMenu('globe-menu'); return false;"></a>
-        <a href="#" class="button" id="camera" onclick="openMenu('camera-menu'); return false;">camera</a>
+        <a href="#" class="button" id="globe" onclick="openMenu('globe-menu'); return false;">Globe</a>
+        <a href="#" class="button" id="camera" onclick="openMenu('camera-menu'); return false;">Camera</a>
         <a href="#" class="button" id="script" onclick="openMenu('script-menu'); return false;">Script</a>
         <a href="#" class="button" id="arcade" onclick="openMenu('arcade-menu'); return false;">Arcade</a>
         <div id="menu-button" onclick="openMenu('menu-overlay')">Menu</div>
@@ -1339,22 +1339,22 @@
             }
         });
         document.getElementById('download-btn').addEventListener('click', function() {
-            const link = document.createElement('a');
-            link.href = 'https://drive.google.com/file/d/12uOESku8Emx9uWVLBSUnH9jEDd-oinI6/view?usp=sharing';
-            link.target = '_blank';
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-        });
+    const link = document.createElement('a');
+    link.href = 'images/Des Welten innerst Kern.pdf'; // Adjusted the path to be relative to the HTML file
+    link.target = '_blank';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+});
 
         const track = document.querySelector('.carousel-track');
         let slidesHtml = '';
         const slideTexts = [
-            "Welcome to Slide 1", "Exploring Slide 2", "Discover Slide 3", "Amazing Slide 4", "Creative Slide 5",
-            "Exciting Slide 6", "Innovative Slide 7", "Inspiring Slide 8", "Fascinating Slide 9", "Engaging Slide 10",
-            "Dynamic Slide 11", "Interactive Slide 12", "Captivating Slide 13", "Motivational Slide 14", "Enthralling Slide 15",
-            "Eye-catching Slide 16", "Spectacular Slide 17", "Vibrant Slide 18", "Dazzling Slide 19", "Stunning Slide 20",
-            "Finale - Slide 21", "New Adventure Slide 22", "Thrilling Slide 23", "Bold Slide 24", "Epic Slide 25"
+            "USA", "Canada", "Poland", "Slovakia", "Czechia",
+            "Austria", "Hungary", "Croatia", "Belgium", "Netherlands",
+            "Switzerland", "Italy", "France", "United Kingdom", "Ireland",
+            "Spain", "Greece", "Barbados", "Grenada", "Saint Vincent and the Grenadines",
+            "Saint Lucia", "Dominica", "Antigua and Barbuda", "Saint Kitts and Nevis", "Sint Maarten","Dominican Republic", "Rome"
         ];
 
         for (let i = 1; i <= slideTexts.length; i++) {
@@ -1394,7 +1394,7 @@
             track.style.transform = `translateX(-${currentIndex * 100}%)`;
             for (let dot of dots) dot.classList.remove('active');
             dots[currentIndex].classList.add('active');
-            slideCounter.textContent = `${currentIndex + 1}/25`;
+            slideCounter.textContent = `${currentIndex + 1}/27`;
         }
 
         updateCarousel();
@@ -1421,11 +1421,11 @@
             const imageTop = imageRect.top - containerRect.top;
 
             const positions = {
-                'social-media': { left: 0.05, top: 0.1 },
-                'globe': { left: 0.1, top: 0.3 },
-                'camera': { left: 0.25, top: 0.5 },
-                'script': { right: 0.05, top: 0.3 },
-                'arcade': { right: 0.05, top: 0.1 }
+                'social-media': { left: 0.15, top: 0.05 },
+                'globe': { left: 0.25, top: 0.35 },
+                'camera': { left: 0.4, top: 0.7 },
+                'script': { right: 0.07, top: 0.04 },
+                'arcade': { right: 0.15, top: 0.4 }
             };
 
             buttons.forEach(button => {
