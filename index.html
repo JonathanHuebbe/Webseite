@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+´<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -7,6 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Preload the background image to prioritize it -->
     <link rel="preload" href="images\Screenshot 2025-03-14 014034.png" as="image">
     <style>
         * { box-sizing: border-box; }
@@ -169,7 +170,8 @@
         .menu.open { opacity: 1; transform: translate(-50%, -50%) scale(1); }
         #arcade-menu { z-index: 2; }
         #contact-menu { min-height: 400px; }
-
+        
+        /* Updated Camera Menu Styling */
         #camera-menu {
             position: fixed;
             top: 50%;
@@ -349,8 +351,8 @@
             min-height: 200px;
             padding-top: 1rem;
             text-align: center;
-            position: relative; 
-            
+            position: relative; /* Added for spinner positioning */
+        }
         .menu-content h2 {
             color: white;
             margin-bottom: 1.5rem;
@@ -716,7 +718,7 @@
                 height: 40px;
             }
         }
-
+        /* Enhanced Globe Menu Styling */
         #globe-menu {
             position: fixed;
             top: 50%;
@@ -935,10 +937,10 @@
     </div>
     <div class="container">
         <div class="title">test</div>
-
+        <!-- Background image loads immediately -->
         <img src="images\Screenshot 2025-03-14 014034.png" alt="Background Image" class="background-image" id="main-bg-image">
         
-
+        <!-- Menus with lazy-loaded images -->
         <div class="menu" id="menu-overlay">
             <div class="close-button" onclick="closeMenu('menu-overlay')">X</div>
             <div class="menu-content">
@@ -1148,6 +1150,7 @@
             HorizontalArray = [];
         }
 
+        // Lazy loading logic: Load all images after background image
         document.addEventListener('DOMContentLoaded', () => {
             const bgImage = document.getElementById('main-bg-image');
             
@@ -1159,6 +1162,7 @@
                 });
             });
 
+            // Fallback for cached background image
             if (bgImage.complete) {
                 bgImage.dispatchEvent(new Event('load'));
             }
