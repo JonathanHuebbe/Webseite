@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
     <!-- Preload the background image to prioritize it -->
-    <link rel="preload" href="Website\images\Screenshot 2025-03-14 014034.png" as="image">
+    <link rel="preload" href="images\Screenshot 2025-03-14 014034.png" as="image">
     <style>
         * { box-sizing: border-box; }
         body {
@@ -938,7 +938,7 @@
     <div class="container">
         <div class="title">test</div>
         <!-- Background image loads immediately -->
-        <img src="images/Screenshot 2025-03-14 014034.jpeg" alt="Background Image" class="background-image" id="main-bg-image">
+        <img src="images\Screenshot 2025-03-14 014034.png" alt="Background Image" class="background-image" id="main-bg-image">
         
         <!-- Menus with lazy-loaded images -->
         <div class="menu" id="menu-overlay">
@@ -998,7 +998,7 @@
         <div class="menu" id="script-menu">
             <div class="close-button" onclick="closeMenu('script-menu')">X</div>
             <div class="menu-content" style="text-align: center;">
-                <img data-src="images/Stage.jpeg" alt="Stage" class="arcade-image" style="max-width: 70%; height: auto; margin-bottom: 1rem;">
+                <img data-src="images\Stage.jpeg" alt="Stage" class="arcade-image" style="max-width: 70%; height: auto; margin-bottom: 1rem;">
                 <button id="download-btn">Open In new Tab</button>
                 <h2 style="font-size: 1rem; color: white;">(Only in German)</h2>
             </div>
@@ -1426,7 +1426,7 @@
             slidesHtml += `
                 <div class="carousel-slide">
                     <h2>${slideTexts[i - 1]}</h2>
-                    <img data-src="images/image${i}.jpeg" alt="Slide ${i}">
+                    <img data-src="images/image${i}.jpg" alt="Slide ${i}">
                 </div>`;
         }
         track.innerHTML = slidesHtml;
