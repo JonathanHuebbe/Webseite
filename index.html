@@ -347,6 +347,7 @@
             min-height: 200px;
             padding-top: 1rem;
             text-align: center;
+            position: relative; /* Added for spinner positioning */
         }
         .menu-content h2 {
             color: white;
@@ -390,6 +391,29 @@
             font-size: clamp(0.9rem, 2vw, 1.2rem);
             margin-top: 0.75rem;
             display: none;
+        }
+        /* Spinner styles */
+        .spinner {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top: 4px solid #ffffff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            z-index: 12;
+        }
+        @keyframes spin {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+        .submitting {
+            opacity: 0.5;
+            pointer-events: none;
         }
         #game-area canvas {
             display: block;
@@ -871,7 +895,7 @@
                 width: 8px;
             }
         }
-        @media only screen and (min-width: 768px) and (max-width: 1024px) {
+        @media either screen and (min-width: 768px) and (max-width: 1024px) {
             #globe-menu {
                 max-width: 700px;
                 max-height: 80vh;
@@ -909,6 +933,7 @@
     </div>
     <div class="container">
         <div class="title">test</div>
+        <!-- No lazy loading for the main background image (critical for initial view) -->
         <img src="images/Screenshot 2025-03-14 014034.jpeg" alt="Background Image" class="background-image">
         <div class="menu" id="menu-overlay">
             <div class="close-button" onclick="closeMenu('menu-overlay')">X</div>
@@ -938,7 +963,7 @@
             <div class="close-button" onclick="closeMenu('globe-menu')">X</div>
             <div class="menu-content">
                 <h2>Countries Visited</h2>
-                <span class="slide-counter" id="slideCounter">1/25</span>
+                <span class="slide-counter" id="slideCounter">1/27</span>
                 <div class="carousel-container">
                     <div class="carousel-track"></div>
                     <a class="prev" onclick="moveSlide(-1)">❮</a>
@@ -954,12 +979,12 @@
             </div>
             <div class="menu-content">
                 <div class="section left">
-                    <img src="images/Gemini_Generated_Image_w5njo1w5njo1w5nj.jpg" alt="Cruise Ship" class="section-img">
+                    <img src="images/Gemini_Generated_Image_w5njo1w5njo1w5nj.jpg" alt="Cruise Ship" class="section-img" loading="lazy">
                     <p>Capturing, editing, and selling unforgettable memories — both on land and at sea</p>
                 </div>
                 <div class="vertical-line"></div>
                 <div class="section right">
-                    <img src="images/Gemini_Generated_Image_ympapcympapcympa.jpg" alt="Wedding Rings" class="section-img">
+                    <img src="images/Gemini_Generated_Image_ympapcympapcympa.jpg" alt="Wedding Rings" class="section-img" loading="lazy">
                     <p>Capturing and editing one of a couple’s most cherished moments — their wedding day.</p>
                 </div>
             </div>
@@ -967,7 +992,7 @@
         <div class="menu" id="script-menu">
             <div class="close-button" onclick="closeMenu('script-menu')">X</div>
             <div class="menu-content" style="text-align: center;">
-                <img src="images/Stage.jpeg" alt="Stage" class="arcade-image" style="max-width: 70%; height: auto; margin-bottom: 1rem;">
+                <img src="images/Stage.jpeg" alt="Stage" class="arcade-image" style="max-width: 70%; height: auto; margin-bottom: 1rem;" loading="lazy">
                 <button id="download-btn">Open In new Tab</button>
                 <h2 style="font-size: 1rem; color: white;">(Only in German)</h2>
             </div>
@@ -976,7 +1001,7 @@
             <div class="close-button" onclick="closeMenu('arcade-menu')">X</div>
             <div class="menu-content">
                 <div id="game-selection" style="text-align: center;">
-                    <img src="images/RetroSnake.jpeg" alt="Arcade Image" class="arcade-image" style="max-width: 70%; height: auto; margin-bottom: 1rem;">
+                    <img src="images/RetroSnake.jpeg" alt="Arcade Image" class="arcade-image" style="max-width: 70%; height: auto; margin-bottom: 1rem;" loading="lazy">
                     <button onclick="loadGame('snake')">Snake</button>
                     <p style="color: #ffffff; font-size: 1rem; margin-top: 0.5rem;">(Use on Screen Arrows or WASD on Keyboard to control the snake)</p>
                 </div>
@@ -993,6 +1018,7 @@
                     <textarea name="message" id="message" placeholder="Your Message" required></textarea>
                     <button type="submit">Send Message</button>
                 </form>
+                <div class="spinner" id="contact-spinner"></div>
                 <div id="message-status">Message sent</div>
             </div>
         </div>
@@ -1318,34 +1344,49 @@
 
         document.getElementById('contact-form').addEventListener('submit', async (e) => {
             e.preventDefault();
-            const formData = new FormData(e.target);
+            
+            const form = e.target;
+            const formContent = form.parentElement;
+            const spinner = document.getElementById('contact-spinner');
+            const messageStatus = document.getElementById('message-status');
+            
+            spinner.style.display = 'block';
+            formContent.classList.add('submitting');
+            
+            const formData = new FormData(form);
             try {
                 const response = await fetch('https://script.google.com/macros/s/AKfycbxhX9toMzglMlurv5fKtIvM5NpqI-bVirtfw-BP13YcqwtTIvpkw2UTbat_5tGoSl3w/exec', {
                     method: 'POST',
                     body: formData
                 });
+                
                 if (response.ok) {
-                    document.getElementById('message-status').style.display = 'block';
-                    e.target.reset();
+                    messageStatus.style.display = 'block';
+                    form.reset();
                     setTimeout(() => {
-                        document.getElementById('message-status').style.display = 'none';
+                        messageStatus.style.display = 'none';
                         closeMenu('contact-menu');
+                        spinner.style.display = 'none';
+                        formContent.classList.remove('submitting');
                     }, 3000);
                 } else {
-                    alert('Error sending message. Please try again later.');
+                    throw new Error('Server response not OK');
                 }
             } catch (error) {
-                alert('Error sending message: ' + error);
+                spinner.style.display = 'none';
+                formContent.classList.remove('submitting');
+                alert('Error sending message: ' + error.message);
             }
         });
+
         document.getElementById('download-btn').addEventListener('click', function() {
-    const link = document.createElement('a');
-    link.href = 'images/Des Welten innerst Kern.pdf'; // Adjusted the path to be relative to the HTML file
-    link.target = '_blank';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-});
+            const link = document.createElement('a');
+            link.href = 'images/Des Welten innerst Kern.pdf';
+            link.target = '_blank';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        });
 
         const track = document.querySelector('.carousel-track');
         let slidesHtml = '';
@@ -1354,14 +1395,14 @@
             "Austria", "Hungary", "Croatia", "Belgium", "Netherlands",
             "Switzerland", "Italy", "France", "United Kingdom", "Ireland",
             "Spain", "Poland", "Barbados", "Grenada", "SVG",
-            "Saint Lucia", "Dominica", "Antigua and Barbuda", "Saint Kitts and Nevis", "Sint Maarten","Dominican Republic", "Vatican City"
+            "Saint Lucia", "Dominica", "Antigua and Barbuda", "Saint Kitts and Nevis", "Sint Maarten", "Dominican Republic", "Vatican City"
         ];
 
         for (let i = 1; i <= slideTexts.length; i++) {
             slidesHtml += `
                 <div class="carousel-slide">
                     <h2>${slideTexts[i - 1]}</h2>
-                    <img src="images/image${i}.jpeg" alt="Slide ${i}">
+                    <img src="images/image${i}.jpeg" alt="Slide ${i}" loading="lazy">
                 </div>`;
         }
         track.innerHTML = slidesHtml;
@@ -1394,7 +1435,7 @@
             track.style.transform = `translateX(-${currentIndex * 100}%)`;
             for (let dot of dots) dot.classList.remove('active');
             dots[currentIndex].classList.add('active');
-            slideCounter.textContent = `${currentIndex + 1}/27`;
+            slideCounter.textContent = `${currentIndex + 1}/${slideTexts.length}`;
         }
 
         updateCarousel();
