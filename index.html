@@ -751,7 +751,7 @@
         #globe-menu h2 {
             color: #fff;
             font-family: 'Poppins', sans-serif;
-            font-weight:  netflix sans700;
+            font-weight: 700;
             font-size: clamp(1.2rem, 3vw, 1.8rem);
             text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
             letter-spacing: 1px;
@@ -883,7 +883,7 @@
             .dot {
                 height: 10px;
                 width: 10px;
- agrupaciones           }
+            }
         }
         @media only screen and (max-width: 414px) {
             #globe-menu {
@@ -985,12 +985,12 @@
             </div>
             <div class="menu-content">
                 <div class="section left">
-                    <img data-src="images/Gemini_Generated_Image_w5njo1w5njo1w5nj.jpg" alt="Cruise Ship" class="section-img lazy">
+                    <img data-src="images/Gemini_Generated_Image_w5njo1w5njo1w5nj.jpg" alt="Cruise Ship" class="section-img">
                     <p>Capturing, editing, and selling unforgettable memories — both on land and at sea</p>
                 </div>
                 <div class="vertical-line"></div>
                 <div class="section right">
-                    <img data-src="images/Gemini_Generated_Image_ympapcympapcympa.jpg" alt="Wedding Rings" class="section-img lazy">
+                    <img data-src="images/Gemini_Generated_Image_ympapcympapcympa.jpg" alt="Wedding Rings" class="section-img">
                     <p>Capturing and editing one of a couple’s most cherished moments — their wedding day.</p>
                 </div>
             </div>
@@ -998,7 +998,7 @@
         <div class="menu" id="script-menu">
             <div class="close-button" onclick="closeMenu('script-menu')">X</div>
             <div class="menu-content" style="text-align: center;">
-                <img data-src="images/Stage.jpeg" alt="Stage" class="arcade-image lazy" style="max-width: 70%; height: auto; margin-bottom: 1rem;">
+                <img data-src="images/Stage.jpeg" alt="Stage" class="arcade-image" style="max-width: 70%; height: auto; margin-bottom: 1rem;">
                 <button id="download-btn">Open In new Tab</button>
                 <h2 style="font-size: 1rem; color: white;">(Only in German)</h2>
             </div>
@@ -1007,7 +1007,7 @@
             <div class="close-button" onclick="closeMenu('arcade-menu')">X</div>
             <div class="menu-content">
                 <div id="game-selection" style="text-align: center;">
-                    <img data-src="images/RetroSnake.jpeg" alt="Arcade Image" class="arcade-image lazy" style="max-width: 70%; height: auto; margin-bottom: 1rem;">
+                    <img data-src="images/RetroSnake.jpeg" alt="Arcade Image" class="arcade-image" style="max-width: 70%; height: auto; margin-bottom: 1rem;">
                     <button onclick="loadGame('snake')">Snake</button>
                     <p style="color: #ffffff; font-size: 1rem; margin-top: 0.5rem;">(Use on Screen Arrows or WASD on Keyboard to control the snake)</p>
                 </div>
@@ -1150,30 +1150,19 @@
             HorizontalArray = [];
         }
 
-        // Lazy loading logic
+        // Lazy loading logic: Load all images after background image
         document.addEventListener('DOMContentLoaded', () => {
             const bgImage = document.getElementById('main-bg-image');
             
             bgImage.addEventListener('load', () => {
-                const lazyImages = document.querySelectorAll('img.lazy');
-                
-                const observer = new IntersectionObserver((entries, observer) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            const img = entry.target;
-                            img.src = img.dataset.src;
-                            img.classList.remove('lazy');
-                            observer.unobserve(img);
-                        }
-                    });
-                }, {
-                    rootMargin: '0px 0px 100px 0px',
-                    threshold: 0.1
+                const lazyImages = document.querySelectorAll('img[data-src]');
+                lazyImages.forEach(img => {
+                    img.src = img.dataset.src; // Set src to trigger loading
+                    img.removeAttribute('data-src'); // Clean up
                 });
-
-                lazyImages.forEach(img => observer.observe(img));
             });
 
+            // Fallback for cached background image
             if (bgImage.complete) {
                 bgImage.dispatchEvent(new Event('load'));
             }
@@ -1437,7 +1426,7 @@
             slidesHtml += `
                 <div class="carousel-slide">
                     <h2>${slideTexts[i - 1]}</h2>
-                    <img data-src="images/image${i}.jpeg" alt="Slide ${i}" class="lazy">
+                    <img data-src="images/image${i}.jpeg" alt="Slide ${i}">
                 </div>`;
         }
         track.innerHTML = slidesHtml;
