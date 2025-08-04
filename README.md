@@ -1,1 +1,1 @@
-My website :)
+A website
