@@ -946,7 +946,7 @@
             <div class="menu-content">
                 <button onclick="closeMenu('menu-overlay')">Explore</button>
                 <button onclick="openMenu('contact-menu')">Contact me</button>
-                <button onclick="openSupportMenu()">Support me</button>
+  
                 <button onclick="openMenu('privacy-menu')">Privacy</button>
             </div>
         </div>
@@ -1040,16 +1040,7 @@
                     for more details.
                   </p>
             </div>
-        </div>
-        <div class="menu" id="support-menu">
-            <div class="close-button" onclick="closeMenu('support-menu')">X</div>
-            <div class="menu-content">
-                <h2>Support Me</h2>
-                <p style="color: white;">Thank you for your support!</p>
-                <button onclick="window.open('https://buymeacoffee.com/jonathanhuebbe', '_blank')">Donate</button>
-                <p style="color: white;">(opens in new tab)</p>
-            </div>
-        </div>
+    
         <a href="#" class="button" id="social-media" onclick="openMenu('social-media-menu'); return false;">Social Media</a>
         <a href="#" class="button" id="globe" onclick="openMenu('globe-menu'); return false;">Globe</a>
         <a href="#" class="button" id="camera" onclick="openMenu('camera-menu'); return false;">Camera</a>
@@ -1240,17 +1231,6 @@
             }
         }
 
-        function openSupportMenu() {
-            const menuOverlay = document.getElementById('menu-overlay');
-            const supportMenu = document.getElementById('support-menu');
-            
-            menuOverlay.classList.remove('open');
-            menuOverlay.style.display = 'none';
-            
-            supportMenu.style.display = 'block';
-            setTimeout(() => {
-                supportMenu.classList.add('open');
-            }, 10);
 
             const greyButtons = document.querySelectorAll('.button');
             greyButtons.forEach(button => {
@@ -1530,3 +1510,4 @@
     </script>
 </body>
 </html>
+
