@@ -477,7 +477,22 @@
             .menu-content { padding-top: 1.5rem; }
         }
         @media only screen and (max-width: 414px) {
-            /* Covered by earlier query */
+            /* On very small screens make menu buttons sit horizontally and centered with wrapping */
+            .menu { padding: 1rem; }
+            .menu-content {
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 0.5rem;
+            }
+            .menu-content button {
+                width: auto;
+                flex: 0 1 auto;
+                min-width: 120px;
+                margin: 0.35rem;
+            }
+            /* Keep section blocks full width in stacked areas */
+            .menu-content .section { width: 100%; margin: 0.5rem 0; }
         }
         @media (max-width: 320px) {
             .button { font-size: 0.7rem; }
