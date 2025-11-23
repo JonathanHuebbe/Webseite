@@ -1,4 +1,4 @@
-´<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -946,7 +946,6 @@
             <div class="menu-content">
                 <button onclick="closeMenu('menu-overlay')">Explore</button>
                 <button onclick="openMenu('contact-menu')">Contact me</button>
-  
                 <button onclick="openMenu('privacy-menu')">Privacy</button>
             </div>
         </div>
@@ -1040,7 +1039,7 @@
                     for more details.
                   </p>
             </div>
-    
+        </div>
         <a href="#" class="button" id="social-media" onclick="openMenu('social-media-menu'); return false;">Social Media</a>
         <a href="#" class="button" id="globe" onclick="openMenu('globe-menu'); return false;">Globe</a>
         <a href="#" class="button" id="camera" onclick="openMenu('camera-menu'); return false;">Camera</a>
@@ -1231,18 +1230,6 @@
             }
         }
 
-
-            const greyButtons = document.querySelectorAll('.button');
-            greyButtons.forEach(button => {
-                button.style.display = 'none';
-            });
-            document.getElementById('menu-button').style.display = 'none';
-            document.querySelector('.background-image').style.visibility = 'hidden';
-            document.querySelector('.title').style.visibility = 'hidden';
-            document.querySelector('.ocean').style.display = 'none';
-            document.body.style.background = 'linear-gradient(135deg, #c44314 0%, #c3cfe2 100%)';
-            document.getElementById('grid-canvas').style.display = 'none';
-        }
 
         function loadGame(game) {
             document.getElementById('game-selection').style.display = 'none';
@@ -1510,4 +1497,5 @@
     </script>
 </body>
 </html>
+
 
